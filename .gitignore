@@ -1,0 +1,6 @@
+#remove executable files
+*.o
+*.exe
+*.in
+*.out
+*.exe.stackdump
