@@ -19,11 +19,14 @@ bool subset(int *arr,int n,int i,int sum,bool included){
             }
 
         }
-         bool ex=  subset(arr,n,i+1,sum,included);
+
 
     sum+=arr[i];
+      cout<<"before the include call: "<<sum<<endl;
       bool in= subset(arr,n,i+1,sum,true);
 
+        cout<<"after the include call: "<<sum<<endl;
+        bool ex=  subset(arr,n,i+1,sum,included);
 
 
 
