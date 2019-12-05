@@ -115,7 +115,7 @@ void buildlist(node *&head){
     }
 
 
-//cout<<endl;
+cout<<endl;
 //cout<<length(head)<<endl;
 
 
@@ -364,6 +364,121 @@ node *  findmidpt(node *head){
 }
 
 
+///logic : simple: traverse through list and stop at length-k+1 node.
+/// logic2: move fast ktimes and then move both slow and fast by 1steps..n-k..
+node * kthnodefromend(node *head,int k){
+
+
+    if(head==NULL || k==0){
+        return head;
+    }
+    node *fast=head;
+    node *slow=head;
+    while(k--){
+        fast=fast->next;
+
+    }
+    while(fast!=NULL){
+        slow=slow->next;
+        fast=fast->next;
+    }
+
+    return slow;
+
+}
+
+node * mergesortedlist(node *a,node *b){
+
+    if(a==NULL){
+        return b;
+    }
+    else if(b==NULL){
+        return a;
+    }
+
+    node *c;
+    /// compare a and b for smaller element to point temp as head of new list..
+
+    if(a->data<b->data){
+        c=a;
+        /// pointing the pointer of smallest values to the rest of sorted list.We assume returned by recursion.
+        c->next=mergesortedlist(a->next,b);
+
+    }
+    else{
+        c=b;
+                /// pointing the pointer of smallest values to the rest of sorted list.We assume returned by recursion.
+
+        c->next=mergesortedlist(a,b->next);
+
+    }
+    /// return original value from the call stack......
+return c;
+}
+
+bool cycledetect(node *head){
+
+
+    node *slow=head;
+    node *fast=head;
+
+    while(fast!=NULL && fast->next!=NULL){
+
+        fast=fast->next->next;
+        slow=slow->next;
+
+        if(slow==fast){
+
+            return true;
+
+        }
+
+
+
+    }
+return false;
+
+}
+
+void cycleremoval(node* head){
+
+      node *slow=head;
+        node *fast=head;
+         node *prev;
+         while(fast!=NULL && fast->next!=NULL){
+            prev=slow;
+        fast=fast->next->next;
+        slow=slow->next;
+
+        if(slow==fast){
+
+            break;
+
+        }
+
+         }
+
+         slow=head;
+
+         while(slow!=fast){
+            prev=fast;
+            slow=slow->next;
+            fast=fast->next;
+
+         }
+
+         prev->next=NULL;
+
+
+
+
+
+}
+
+
+
+
+
 
 
 
@@ -374,8 +489,8 @@ int main(){
 node * head=NULL;
 ///node * head2=NULL;
 ///insertathead(head,data);
-buildlist(head);
-print(head);
+///buildlist(head);
+///print(head);
 ///cout<<"enter data and pos:"<<endl;
 ///int data,pos;
 ///cin>>data>>pos;
@@ -397,9 +512,40 @@ print(head);
 ///node *temp=reverserecur(head);
 ///print(temp);
 
-node  *temp=findmidpt(head);
-cout<<temp->data;
+///head=mergesortedlist(head,head2);
+///print(head);
+//insertattail(head,20);
+//insertattail(head,4);
+//insertattail(head,15);
+//insertattail(head,10);
+//head->next->next->next->next = head;
 
+insertattail(head,1);
+insertattail(head,2);
+insertattail(head,3);
+insertattail(head,4);
+insertattail(head,5);
+insertattail(head,6);
+insertattail(head,7);
+node *temp1=head;
+while(temp1->data!=3){
+    temp1=temp1->next;
+}
+node *temp2=head;
+while(temp2->data!=7){
+    temp2=temp2->next;
+}
+temp2->next=temp1;
+cycleremoval(head);
+print(head);
+//if(cycledetect(head)){
+
+   // cout<<"loop found";
+
+//}
+//else{
+   // cout<<"not found any loooop..";
+//}
 
 return 0;
 }
