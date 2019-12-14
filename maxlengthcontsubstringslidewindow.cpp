@@ -23,7 +23,7 @@ for(int i=1;i<l;i++){
     int lastoc=visited[a[i]];
 
     ///expansion : in case of no last occurence or if last occurence is outside the window..
-    if(lastoc==-1 || lastoc<(i-l)){
+    if(lastoc==-1 || lastoc<(i-clen)){
         clen+=1;
 
     }
