@@ -98,4 +98,37 @@ return 0;
 2 2
 3 4
 38
+
+// Function to preprcess input mat[M][N].  This function
+// mainly fills aux[M][N] such that aux[i][j] stores sum
+// of elements from (0,0) to (i,j)
+int preProcess(int mat[M][N], int aux[M][N])
+{
+   // Copy first row of mat[][] to aux[][]
+   for (int i=0; i<N; i++)
+      aux[0][i] = mat[0][i];
+
+   // Do column wise sum
+   for (int i=1; i<M; i++)
+      for (int j=0; j<N; j++)
+         aux[i][j] = mat[i][j] + aux[i-1][j];
+
+   // Do row wise sum
+   for (int i=0; i<M; i++)
+      for (int j=1; j<N; j++)
+         aux[i][j] += aux[i][j-1];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 */
