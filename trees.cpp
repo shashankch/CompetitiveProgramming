@@ -125,6 +125,8 @@ void levelorder(node*root){
     return;
 }
 
+
+///using queue..
 void bfs(node *root){
 
 
@@ -148,12 +150,89 @@ void bfs(node *root){
     return;
 
 }
+///using queue with pair --node * and int level...
+///void bfs2()...
+
+
+///using char null marker...
+void bfs3(node *root){
+
+
+    queue<node*>q;
+    q.push(root);
+    q.push(NULL);
+
+    while(!q.empty()){
+
+
+        node* fr=q.front();
+        if(fr==NULL){
+            cout<<endl;
+
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }
+        else{
+
+        cout<<fr->data<<" ";
+        q.pop();
+        if(fr->left){
+        q.push(fr->left);
+        }
+        if(fr->right){
+        q.push(fr->right);
+        }
+    }
+    }
+    return;
+
+}
+
+int countnodes(node *root){
+
+    if(root==NULL){
+
+        return 0;
+    }
+
+    return 1+countnodes(root->left)+countnodes(root->right);
 
 
 
+}
+
+
+int sumnodes(node *root){
+
+    if(root==NULL){
+
+        return 0;
+    }
+
+    return root->data+sumnodes(root->left)+sumnodes(root->right);
 
 
 
+}
+
+int diameter(node *root){
+
+
+    if(root==NULL){
+        return 0;
+    }
+
+    int h1=height(root->left);
+    int h2=height(root->right);
+
+    int d1=h1+h2;
+    int d2=diameter(root->left);
+    int d3=diameter(root->right);
+
+    return max(d1,max(d2,d3));
+
+}
 
 
 
@@ -175,5 +254,11 @@ cout<<endl;
 levelorder(root);
 cout<<endl;
 bfs(root);
+cout<<endl;
+cout<<countnodes(root);
+cout<<endl;
+cout<<sumnodes(root);
+cout<<endl;
+cout<<diameter(root);
 return 0;
 }
