@@ -1,18 +1,20 @@
 
 #include<iostream>
 #include<queue>
+#include<map>
 using namespace std;
 
 class node{
 
     public:
     int data;
+    int hd;
     node *left;
     node *right;
 
 
     node(int d){
-
+    hd=INT_MAX;
         data=d;
         left=NULL;
         right=NULL;
@@ -50,6 +52,56 @@ node *buildtree(){
 
 }
 
+void bottomview(node *root){
+
+    if(root==NULL){
+        return ;
+
+    }
+
+    int hd=0;
+
+    map<int,int>m;
+
+    queue<node *>q;
+
+    root->hd=hd;
+
+    q.push(root);
+
+    while(!q.empty()){
+
+        node *temp=q.front();
+        q.pop();
+
+        hd=temp->hd;
+
+        m[hd]=temp->data;
+
+        if(temp->left!=NULL){
+            temp->left->hd=hd-1;
+            q.push(temp->left);
+        }
+
+        if(temp->right!=NULL){
+            temp->right->hd=hd+1;
+            q.push(temp->right);
+        }
+
+    }
+
+
+    for(auto i=m.begin();i!=m.end();i++){
+        cout<<i->second<<" ";
+    }
+
+
+
+}
+
+
+
+
 void printpre(node *root){      ///top down approach
 
     if(root==NULL){
@@ -65,8 +117,8 @@ int main(){
 
 
 node *root=buildtree();
-printpre(root);
-
+///printpre(root);
+bottomview(root);
 
 
 return 0;
