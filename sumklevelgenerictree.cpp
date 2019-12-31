@@ -100,6 +100,19 @@ void sumkthlevel(node *root,int k,vector<int>&v){
     return;
 }
 
+int sumAtLevelK(node *root, int k) {
+    if(root==NULL) {
+        return 0;
+    }
+    if(k<=0) {
+        return root->data;
+    }
+    int leftAns = sumAtLevelK(root->left, k-1);
+    int rightAns = sumAtLevelK(root->right, k-1);
+    return leftAns+rightAns;
+}
+
+
 int main(){
 int k;
 node *root=buildtree();
