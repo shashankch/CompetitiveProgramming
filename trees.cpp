@@ -329,7 +329,7 @@ check isheightbalanced(node *root){
 
     }
     else{
-        ch.balance=true;
+        ch.balance=false;
     }
 
 
