@@ -160,7 +160,7 @@ void downheapifyhelper(vector<int> &heap,int idx,int heapsize){
 
 }
 
-/// O(nlogn) : inplace and not stable sort.. here selection takes O(1) time instead of O(n)
+/// O(nlogn) : inplace and not stable sort(relative order of elements is not maintained).. here selection takes O(1) time instead of O(n)
 
 /// here first build heap using array..by downheapify for optimized way..
 /// then reduce size of array by performing swap of first and last element and downheapification..
