@@ -16,6 +16,13 @@ public:
         key=k;
         value=v;
         }
+    ~node(){
+
+        if(next!=NULL){
+            delete next;
+        }
+
+    }
 
 
 };
@@ -26,6 +33,40 @@ class Hashtable{
     int cs;
     int ts;
     node<T> ** buckets;
+
+    void rehash(){
+
+        node<T> **oldbuckets=buckets;
+        int oldts=ts;
+        ts=ts*2;
+        /// yaha par prime nearest banana hai
+        cs=0;
+        buckets=new node<T>*[ts];
+        for(int i=0;i<ts;i++){
+            buckets[i]=NULL;
+        }
+        for(int i=0;i<oldts;i++){
+            node<T> *temp=oldbuckets[i];
+
+            if(temp!=NULL){
+            while(temp!=NULL){
+                insert(temp->key,temp->value);
+                temp=temp->next;
+            }
+
+
+            ///delete old table i bucket linked list
+            delete oldbuckets[i];
+            }
+
+        }
+        delete [] oldbuckets;
+
+
+
+    }
+
+
 
     int hashfun(string key){
 
@@ -70,6 +111,14 @@ public:
             node <T> *n=new node <T> (key,value);
             n->next=buckets[i];
             buckets[i]=n;
+
+            cs++;
+
+            float loadfactor=(float)cs/ts;
+            if(loadfactor>0.7){
+                cout<<"Load factor is"<<loadfactor<<endl;
+                rehash();
+            }
 
 
 
@@ -145,6 +194,23 @@ public:
 
     }
 
+    T & operator[](string key){
+
+        T* temp=search(key);
+        if(temp==NULL){
+            ///insertion
+            T garbage;
+            insert(key,garbage);
+
+            T * value=search(key);
+            return *(value);
+        }
+        /// update/search functionality...
+        return *temp;
+
+
+
+    }
 
 
 
