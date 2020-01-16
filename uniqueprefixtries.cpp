@@ -80,7 +80,25 @@ public :
 
     }
 
+string prefixfunction(string x, tries* t) {
+    int i = 0;
+    node* root = t->root;
+    int length = x.length();
+    string ans = "";
+    while(i != length) {
+        if((root->children[x[i]])->cnt == 1) {
+            ans = ans + x[i];
+            return ans;
+        } else {
+            ans = ans + x[i];
+            root = root->children[x[i]];
+        }
+        i++;
+    }
 
+    ans = "-1";
+    return ans;
+}
 
 
 
@@ -105,6 +123,11 @@ for(int i=0;i<5;i++){
 char prefix[26];
 uniqueprefixhelper(t->root,prefix,0);
 
+for(int i=0;i<5;i++){
+
+    cout<<prefixfunction(arr[i],t)<<" ";
+
+}
 
 
 

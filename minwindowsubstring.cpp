@@ -8,7 +8,7 @@ string minwindownsubstring(string str, string pat){
 
     if(len1<len2){
 
-        return "NOT POSSIBLE";
+        return "No string";
 
     }
     int has_pat[256]={0};
@@ -55,7 +55,7 @@ string minwindownsubstring(string str, string pat){
 
     }
     if(start_index==-1){
-         return "NOT POSSIBLE";
+         return "No string";
     }
 
 
@@ -81,7 +81,8 @@ string minwindownsubstring(string str, string pat){
 int main(){
 
 string str,pat;
-cin>>str>>pat;
+getline(cin,str);
+getline(cin,pat);
 cout<<minwindownsubstring(str,pat);
 
 
