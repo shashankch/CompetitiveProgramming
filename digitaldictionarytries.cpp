@@ -1,6 +1,7 @@
 
 #include<iostream>
-#include<unordered_map>
+// #include<unordered_map>
+#include <map>
 using namespace std;
 
 
@@ -10,7 +11,8 @@ public:
     char data;
     bool terminal;
 
-    unordered_map<char,node*>children;
+    // unordered_map<char,node*>children;
+    map<char,node*>children;
 
     node(char data){
 
@@ -56,33 +58,37 @@ public :
 
 void print(node *root,string s){
 
-    if(root==NULL){
-        return ;
-    }
+    // if(root==NULL){
+    //     return ;
+    // }
 
 
     if(root->children.empty()){
 
-        s+=root->data;
+        // s+=root->data;
         cout<<s<<endl;
         return;
     }
 
 
     if(root->terminal){
-         s+=root->data;
+        //  s+=root->data;
        cout<<s<<endl;
-       for(auto p:root->children){
-        print(p.second,s);
-       }
-       return;
+    //    for(auto p:root->children){
+    //     print(p.second,s);
+    //    }
+    //    return;
     }
 
-    if(root->data!='\0'){
-        s+=root->data;
-    }
-    for(auto p:root->children){
-        print(p.second,s);
+    // if(root->data!='\0'){
+    //     s+=root->data;
+    // }
+    node *t;
+    string w;
+    for(auto p=root->children.begin();p!=root->children.end();p++){
+        t = root->children[p->first];
+        w = s+t->data;
+        print(t,w);
     }
 
 
