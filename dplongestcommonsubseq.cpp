@@ -9,7 +9,7 @@ int lcs(char x[],char y[]){
     int m=strlen(x);
     int n=strlen(y);
 
-    int dp[100][100];
+    int dp[1003][1003];
 
     ///base case
     for(int i=0;i<=m;i++) dp[i][0]=0;
@@ -34,7 +34,7 @@ int lcs(char x[],char y[]){
 }
 int main(){
 
-char a[100],b[100];
+char a[1000],b[1000];
 cin>>a>>b;
 int ans=lcs(a,b);
 cout<<ans;
