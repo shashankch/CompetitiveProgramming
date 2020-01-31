@@ -1,18 +1,17 @@
 
 #include<iostream>
-#include<string>
+
 using namespace std;
 
 
-string keypad [10]={"","","ABC","DEF","GHI","JKL","MNO","PQRS","TUV","WXYZ"};
-
-void keypadstrings(string in ,string out,int i,int j){
+char keypad[][10]={"","","ABC","DEF","GHI","JKL","MNO","PQRS","TUV","WXYZ"};
 
 
-    if(in.length()==0){
+void keypadstrings(char *in ,char *out,int i,int j){
 
+    if(in[i]=='\0'){
+        out[j]='\0';
         cout<<out<<",";
-
         return;
     }
 
@@ -21,20 +20,18 @@ void keypadstrings(string in ,string out,int i,int j){
         keypadstrings(in,out,i+1,j);
     }
 
-    for(int k=0;k<keypad[digit].length();k++){
+    for(int k=0;keypad[digit][k]!='\0';k++){
 
         out[j]=keypad[digit][k];
         keypadstrings(in,out,i+1,j+1);
 
-
     }
-
 }
 int main(){
 
 
-string in;
-string out;
+char in[100];
+char out[100];
 cin>>in;
 keypadstrings(in,out,0,0);
 
