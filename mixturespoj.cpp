@@ -1,16 +1,17 @@
 
-#include<iostream>
+#include<bits/stdc++.h>
+#define ll long long int
 using namespace std;
 
-int a[1000];
-int dp[1000][1000];
+ll a[1000];
+ll dp[1000][1000];
 
 
-long long sum (int s,int e){
+ll sum (ll s,ll e){
 
-    long long ans=0;
+    ll ans=0;
 
-    for(int i=s;i<=e;i++){
+    for(ll i=s;i<=e;i++){
         ans+=a[i];
         ans%=100;
     }
@@ -22,7 +23,7 @@ long long sum (int s,int e){
 
 
 
-long long solvemixtures(int i,int j){
+ll solvemixtures(ll i,ll j){
 
     ///base case
     if(i>=j){
@@ -36,7 +37,7 @@ long long solvemixtures(int i,int j){
     /// break expression at every possible k
 
     dp[i][j]=INT_MAX;
-    for(int k=i;k<=j;k++){
+    for(ll k=i;k<=j;k++){
         dp[i][j]=min(dp[i][j],solvemixtures(i,k)+solvemixtures(k+1,j)+sum(i,k)*sum(k+1,j));
     }
 
@@ -48,23 +49,24 @@ long long solvemixtures(int i,int j){
 
 int main(){
 
- int n;
- while((scanf("%d",&n))!=EOF){
+ll n;
+//while((scanf("%d",&n))!=EOF){
+cin>>n;
 
-        for(int i=0;i<n;i++){
+        for(ll i=0;i<n;i++){
             cin>>a[i];
         }
 
     /// initialize dp with -1
-        for(int i=0;i<=n;i++){
-            for(int j=0;j<=n;j++){
+        for(ll i=0;i<=n;i++){
+            for(ll j=0;j<=n;j++){
                 dp[i][j]=-1;
             }
         }
         cout<<solvemixtures(0,n-1);
 
 
- }
+ //}
 
 
 
