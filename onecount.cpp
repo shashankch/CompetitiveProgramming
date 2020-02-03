@@ -3,6 +3,52 @@
 using namespace std;
 
 
+void countone(int *arr,int n,int k){
+
+
+    int lw=0,rw=0,bwin=0,zero=0,bl=0;
+
+    while(rw<n){
+
+        if(zero<=k){
+            if(arr[rw]==0)
+            zero++;
+
+            rw++;
+        }
+        if(zero>k){
+
+            if(arr[lw]==0){
+                zero--;
+            }
+            lw++;
+        }
+        if((rw-lw)>bwin and (zero<=k)) {
+
+            bwin=rw-lw;
+            bl=lw;
+
+        }
+    }
+    cout<<bwin<<endl;
+    for(int i=0;i<bl;i++){
+
+        cout<<arr[i]<<" ";
+    }
+
+    for(int i=bl;i<bl+bwin;i++){
+
+        if(arr[i]==0){
+            arr[i]=1;
+        }
+        cout<<arr[i]<<" ";
+    }
+
+    for(int i=bl+bwin;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+
+}
 
 void onecount2(int *arr,int n,int k){
 
@@ -43,19 +89,18 @@ void onecount2(int *arr,int n,int k){
 
 
 cout<<maxlen<<endl;
-for(int i=s;i<e;i++){
-   arr[i]=1;
-}
-for(int i=0;i<n;i++){
+for(int i=0;i<s;i++){
     cout<<arr[i]<<" ";
 }
-
-
-
-
-
-
-
+for(int i=s;i<e;i++){
+   if(arr[i]==0) {
+   arr[i]=1;
+   }
+   cout<<arr[i]<<" ";
+}
+for(int i=e;i<n;i++){
+    cout<<arr[i]<<" ";
+}
 
 }
 void onecount(int *arr,int n,int k){
@@ -111,7 +156,7 @@ for(int i=0;i<n;i++){
     cin>>arr[i];
 }
 
-onecount(arr,n,k);
+countone(arr,n,k);
 
 
 
