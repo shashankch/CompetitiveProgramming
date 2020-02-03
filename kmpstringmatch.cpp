@@ -5,7 +5,7 @@ int reset[MX];
 
 
 void kmppreprocess(string pat){
-    int i=0,j=1;
+    int i=0,j=-1;
     reset[0]=-1;
     while(i<pat.size()){
         //check for resetting
