@@ -3,7 +3,7 @@
 using namespace std;
 int reset[MX];
 
-
+//O(n+m)
 void kmppreprocess(string pat){
     int i=0,j=-1;
     reset[0]=-1;
