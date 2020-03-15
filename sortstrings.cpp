@@ -21,6 +21,49 @@ string extractstringatkey(string str,int key){
 return (string)s;
 }
 
+int convertToInt(string s){
+
+    int ans=0;
+    int p=1;
+    for(int i=s.length()-1;i>=0;i--){
+
+        ans+= ((s[i]-'0')*p);
+        p=p*10;
+    }
+
+
+    return ans;
+
+}
+
+
+
+
+
+bool numericCompare(pair<string,string> s1,pair<string,string>s2){
+
+    string key1,key2;
+
+    key1=s1.second;
+    key2=s2.second;
+
+    return convertToInt(key1)<convertToInt(key2);
+
+
+
+}
+
+bool lexioCompare(pair<string, string> s1, pair<string, string> s2)
+{
+
+    string key1, key2;
+
+    key1 = s1.second;
+    key2 = s2.second;
+
+    return key1<key2;
+}
+
 int main(int argc, char const *argv[])
 {
     
@@ -36,6 +79,7 @@ int main(int argc, char const *argv[])
 
     int key;
     string reversal,ordering;
+    cin>>key>>reversal>>ordering;
     pair<string,string> strPair[100];
     for(int i=0;i<n;i++){
         strPair[i].first=a[i];
@@ -61,7 +105,7 @@ int main(int argc, char const *argv[])
 
     for(int i=0;i<n;i++){
 
-        cout<<strPair[i].first<<" ";
+        cout<<strPair[i].first<<endl;
     }
 
 
