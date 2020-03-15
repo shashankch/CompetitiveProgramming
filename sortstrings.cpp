@@ -7,7 +7,6 @@ using namespace std;
 string extractstringatkey(string str,int key){
 
     //strtok
-
     char *s=strtok((char *)str.c_str()," ");
 
     while(key>1){
@@ -19,26 +18,8 @@ string extractstringatkey(string str,int key){
 
     }
 
-
-    return (string)s;
-
-
-
-
-
+return (string)s;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 int main(int argc, char const *argv[])
 {
