@@ -80,7 +80,7 @@ bool helper(unordered_map<int, vector<int> *> &adjlist, int sv, int ev, unordere
 
     return false;
 }
-
+// o(V+E)  in worst case E=V^2
 bool haspath(unordered_map<int, vector<int> *> &adjlist, int sv, int ev)
 {
 
