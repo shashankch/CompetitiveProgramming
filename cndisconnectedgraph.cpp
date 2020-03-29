@@ -3,11 +3,11 @@
 
 using namespace std;
 
-void printbfs(int **edges, int n, int sv,bool *visited)
+void printbfs(int **edges, int n, int sv, bool *visited)
 {
 
     queue<int> pendingVertices;
-   
+
     pendingVertices.push(sv);
     visited[sv] = true;
     while (!pendingVertices.empty())
@@ -29,8 +29,6 @@ void printbfs(int **edges, int n, int sv,bool *visited)
             }
         }
     }
-
-  
 }
 
 // dfs implementation.. going in depth first.
@@ -57,7 +55,8 @@ void printdfs(int **edges, int n, int sv, bool *visited)
     }
 }
 
-void bfs(int ** edges,int n){
+void bfs(int **edges, int n)
+{
     bool *visited = new bool[n];
 
     for (int i = 0; i < n; i++)
@@ -73,27 +72,23 @@ void bfs(int ** edges,int n){
     delete[] visited;
 }
 
-void dfs(int ** edges,int n){
+void dfs(int **edges, int n)
+{
 
-    bool *visited=new bool[n];
+    bool *visited = new bool[n];
 
-    for(int i=0;i<n;i++){
-        visited[i]=false;
+    for (int i = 0; i < n; i++)
+    {
+        visited[i] = false;
     }
 
-    for(int i=0;i<n;i++){
-    if(!visited[i])
-    printdfs(edges,n,i,visited);
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i])
+            printdfs(edges, n, i, visited);
     }
-    delete [] visited;
-
-
-
-
-
+    delete[] visited;
 }
-
-
 
 int main()
 {
@@ -123,9 +118,9 @@ int main()
         edges[s][f] = 1;
     }
 
-    cout<<"dfs"<<endl;
+    cout << "dfs" << endl;
     dfs(edges, n);
-    cout<<"bfs"<<endl;
+    cout << "bfs" << endl;
     bfs(edges, n);
 
     for (int i = 0; i < n; i++)
@@ -135,5 +130,4 @@ int main()
     }
 
     delete[] edges;
- 
 }

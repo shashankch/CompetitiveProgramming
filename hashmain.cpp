@@ -1,19 +1,19 @@
 
-#include<iostream>
+#include <iostream>
 #include "hashtable.h"
 using namespace std;
 
- int main(){
+int main()
+{
 
-
-    Hashtable <int>h(7);
-    h.insert("Mango",100);
-     h.insert("apple",200);
-      h.insert("guava",300);
-      h.insert("banana",250);
-       //h.insert("chikeu",400);
-h.print();
-/*
+   Hashtable<int> h(7);
+   h.insert("Mango", 100);
+   h.insert("apple", 200);
+   h.insert("guava", 300);
+   h.insert("banana", 250);
+   //h.insert("chikeu",400);
+   h.print();
+   /*
 int *price=h.search("banana");
  if(price==NULL){
     cout<<"not found";
@@ -28,9 +28,9 @@ h.print();
 
 */
 
-    h["litchi"]=120;    ///insert;
-    h["Mango"]=800; ///update;
-    cout<<h["Mango"]<<endl; ///search functionality
-h.print();
- return 0;
- }
+   h["litchi"] = 120;          ///insert;
+   h["Mango"] = 800;           ///update;
+   cout << h["Mango"] << endl; ///search functionality
+   h.print();
+   return 0;
+}

@@ -17,16 +17,15 @@ int main()
     int n = sizeof(coins) / sizeof(int);
     int money = 120;
     // lower bound for 168
-    while(money>0){
-    int lb = lower_bound(coins, coins + n, money, compare) - coins-1;
-    // cout << "value" << coins[lb] << endl;
-    int m=coins[lb];
+    while (money > 0)
+    {
+        int lb = lower_bound(coins, coins + n, money, compare) - coins - 1;
+        // cout << "value" << coins[lb] << endl;
+        int m = coins[lb];
 
-    cout<<m<<" ";
+        cout << m << " ";
 
-    money-=m;
-
-
+        money -= m;
     }
     return 0;
 }

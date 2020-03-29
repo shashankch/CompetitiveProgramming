@@ -1,38 +1,32 @@
 
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
+int uniqueone(int arr[], int n)
+{
 
-int uniqueone(int arr[],int n){
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
 
-    int ans=0;
-    for(int i=0;i<n;i++){
-
-        ans^=arr[i];
-
+        ans ^= arr[i];
     }
 
-
-
-
-
-
-
-
     return ans;
-
 }
-int main(){
+int main()
+{
 
-int n;
-int arr[1003];
-cin>>n;
+    int n;
+    int arr[1003];
+    cin >> n;
 
-for(int i=0;i<n;i++){
-    cin>>arr[i];
-}
-cout<<uniqueone(arr,n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    cout << uniqueone(arr, n);
 
-return 0;
+    return 0;
 }

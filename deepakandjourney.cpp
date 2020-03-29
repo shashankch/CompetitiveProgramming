@@ -1,46 +1,48 @@
 
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 #define ll long long int
 using namespace std;
 
+int main()
+{
 
-
-int main(){
-
-ll t;
-cin>>t;
-while(t--){
-ll n;
-cin>>n;
-vector<ll>c(n);
-vector<ll>l(n);
-vector<ll>m(n);
-for(ll i=0;i<n;i++){
-    ll cost;
-    cin>>cost;
-    c[i]=cost;
-    if(i==0){
-        m[i]=c[i];
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        ll n;
+        cin >> n;
+        vector<ll> c(n);
+        vector<ll> l(n);
+        vector<ll> m(n);
+        for (ll i = 0; i < n; i++)
+        {
+            ll cost;
+            cin >> cost;
+            c[i] = cost;
+            if (i == 0)
+            {
+                m[i] = c[i];
+            }
+            else
+            {
+                m[i] = min(m[i - 1], c[i]);
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            cin >> l[i];
+        }
+        int finalcost = 0;
+        /// int petrolavl=0;
+        for (int i = 0; i < n; i++)
+        {
+            finalcost += l[i] * m[i];
+        }
+        cout << finalcost << endl;
     }
-    else{
-        m[i]=min(m[i-1],c[i]);
-    }
-}
-for(int i=0;i<n;i++){
-    cin>>l[i];
-}
-int finalcost=0;
-/// int petrolavl=0;
-for(int i=0;i<n;i++){
-    finalcost+=l[i]*m[i];
-}
-cout<<finalcost<<endl;
-
-
-}
-return 0;
-
+    return 0;
 }
 /*
 #include<bits/stdc++.h>

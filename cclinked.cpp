@@ -1,189 +1,161 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class node{
-
+class node
+{
 
 public:
     int data;
-    node * next;
+    node *next;
 
-    node(int d){
+    node(int d)
+    {
 
-    data=d;
-    next=NULL;
+        data = d;
+        next = NULL;
     }
-
 };
-void push(node *&head,int data){
+void push(node *&head, int data)
+{
 
+    node *temp = head;
 
+    node *n = new node(data);
 
+    if (head != NULL)
+    {
 
+        while (temp->next != head)
+        {
 
-
-    node *temp=head;
-
-    node *n=new node(data);
-
-
-
-
-
-    if(head!=NULL){
-
-        while(temp->next!=head){
-
-            temp=temp->next;
-
+            temp = temp->next;
         }
-        temp->next=n;
-         n->next=head;
-
-
-}
-    else{
-
-        n->next=n;
-        head=n;
+        temp->next = n;
+        n->next = head;
     }
+    else
+    {
 
-
+        n->next = n;
+        head = n;
+    }
 }
 
+bool found(node *head, int data)
+{
 
-node * found(node *head,int data){
+    node *temp = head;
+    while (temp->next != head)
+    {
 
-        node *temp=head;
-    while(temp->next!=head){
-
-        if(temp->data==data){
+        if (temp->data == data)
+        {
             return true;
         }
 
-       temp=temp->next;
+        temp = temp->next;
     }
 
     return false;
-
-
-
 }
-void buildcycle(node *&head){
+void buildcycle(node *&head)
+{
 
-
-    node *temp=head;
+    node *temp = head;
     node *p;
-    while(temp->next!=head){
+    while (temp->next != head)
+    {
 
-       if(found(temp->next,temp->data)){
-            p=temp;
+        if (found(temp->next, temp->data))
+        {
+            p = temp;
             break;
-       }
-        temp=temp->next;
-
-
+        }
+        temp = temp->next;
     }
-    while(temp->next!=head){
-        temp=temp->next;
+    while (temp->next != head)
+    {
+        temp = temp->next;
     }
 
-    temp->next=p;
-
+    temp->next = p;
 }
 
+void cycleremoval(node *&head)
+{
 
+    node *slow = head;
+    node *fast = head;
+    node *prev;
+    while (fast != NULL && fast->next != NULL)
+    {
+        prev = slow;
+        fast = fast->next->next;
+        slow = slow->next;
 
-
-
-
-
-
-void cycleremoval(node* &head){
-
-      node *slow=head;
-        node *fast=head;
-         node *prev;
-         while(fast!=NULL && fast->next!=NULL){
-            prev=slow;
-        fast=fast->next->next;
-        slow=slow->next;
-
-        if(slow==fast){
+        if (slow == fast)
+        {
 
             break;
+        }
+    }
 
+    slow = head;
+
+    while (slow != fast)
+    {
+        prev = fast;
+        slow = slow->next;
+        fast = fast->next;
+    }
+
+    prev->next = NULL;
+}
+void print(node *head)
+{
+
+    while (head != NULL)
+    {
+
+        cout << head->data << "->";
+        head = head->next;
+    }
+    //cout<<"length:"<<length(head)<<endl;
+
+    cout << endl;
+}
+void printc(node *head)
+{
+
+    node *temp = head;
+    while (temp->next != head)
+    {
+
+        cout << temp->data << "-->";
+        temp = temp->next;
+    }
+    cout << temp->data << "end";
+}
+
+int main()
+{
+
+    node *head = NULL;
+    while (1)
+    {
+        int n;
+        cin >> n;
+        if (n == -1)
+        {
+            break;
         }
 
-         }
-
-         slow=head;
-
-         while(slow!=fast){
-            prev=fast;
-            slow=slow->next;
-            fast=fast->next;
-
-         }
-
-         prev->next=NULL;
-
-
-
-
-
-}
-void print(node *head){
-
-
-    while(head!=NULL){
-
-        cout<<head->data<<"->";
-        head=head->next;
-
-
+        push(head, n);
     }
-//cout<<"length:"<<length(head)<<endl;
 
-cout<<endl;
+    buildcycle(head);
+    cycleremoval(head);
+    print(head);
 
-
-
-}
-void printc(node *head){
-
-    node *temp=head;
-    while(temp->next!=head){
-
-        cout<<temp->data<<"-->";
-        temp=temp->next;
-    }
-    cout<<temp->data<<"end";
-
-}
-
-
-
-int main(){
-
-
-node * head=NULL;
- while(1)
-  {
-     int n;
-     cin>>n;
-     if(n==-1)
-     {
-       break;
-     }
-
-        push(head,n);
-
-  }
-
-buildcycle(head);
-cycleremoval(head);
-print(head);
-
-return 0;
+    return 0;
 }

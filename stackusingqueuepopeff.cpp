@@ -1,86 +1,77 @@
 
-#include<iostream>
-#include<queue>
+#include <iostream>
+#include <queue>
 using namespace std;
 
-class stack{
+class stack
+{
 
-    queue<int>a,b;
-
+    queue<int> a, b;
 
     int curr_size;
 
-public :
-    stack(){
+public:
+    stack()
+    {
 
-    curr_size=0;
-
+        curr_size = 0;
     }
 
-    void pop(){
+    void pop()
+    {
 
+        if (!a.empty())
+        {
+            a.pop();
 
-       if(!a.empty()){
-        a.pop();
-
-        curr_size--;
-       }
+            curr_size--;
+        }
     }
 
-    void push(int data){
-
+    void push(int data)
+    {
 
         curr_size++;
 
         b.push(data);
 
-        while(!a.empty()){
+        while (!a.empty())
+        {
 
             b.push(a.front());
             a.pop();
-
         }
-     swap(a,b);
-
-
-
+        swap(a, b);
     }
 
-    int top(){
+    int top()
+    {
 
-
-        if(!a.empty()){
-
+        if (!a.empty())
+        {
 
             return a.front();
         }
-
-
     }
-
-
 };
 
-
-int main(){
-
+int main()
+{
 
     stack s;
     int n;
-    cin>>n;
-    for(int i=0;i<n;i++){
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
         s.push(i);
     }
 
-    for(int i=0;i<n;i++){
+    for (int i = 0; i < n; i++)
+    {
 
-        cout<<s.top()<<" ";
+        cout << s.top() << " ";
         s.pop();
-
-
     }
 
-
-
-return 0;
+    return 0;
 }

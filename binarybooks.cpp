@@ -1,44 +1,29 @@
 
 
-#include<iostream>
+#include <iostream>
 #define ll long long int
 using namespace std;
 
+ll bookdiv(ll n, ll k, ll arr[])
+{
 
-ll bookdiv(ll n,ll k,ll arr[]){
+    //for(ll i=)
 
-
-for(ll i=)
-
-
-
-return ;
+    return;
 }
-
-
-
-
-
-
-
-
-
 
 int main()
 {
 
-
-    ll n,k;
+    ll n, k;
     ll arr[10005];
-    cin>>n>>k;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
+    cin >> n >> k;
+    for (ll i = 0; i < n; i++)
+    {
+        cin >> arr[i];
     }
 
-    cout<<bookdiv(n,k,arr);
-
-
-
+    cout << bookdiv(n, k, arr);
 
     return 0;
 }

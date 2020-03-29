@@ -1,36 +1,31 @@
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
+void generateparantheses(int n, int open, int close, int index, char *out)
+{
 
-void generateparantheses(int n,int open,int close,int index,char* out){
+    ///base case when reach end of the output array.
+    if (index == 2 * n)
+    {
 
+        out[index] = '\0';
+        cout << out << endl;
+        return;
+    }
+    if (close < open)
+    {
 
-        ///base case when reach end of the output array.
-        if(index==2*n){
+        out[index] = ')';
+        generateparantheses(n, open, close + 1, index + 1, out);
+    }
 
-            out[index]='\0';
-            cout<<out<<endl;
-            return;
+    if (open < n)
+    {
 
-        }
-         if(close<open){
-
-            out[index]=')';
-            generateparantheses(n,open,close+1,index+1,out);
-
-
-        }
-
-        if(open<n){
-
-                out[index]='(';
-                generateparantheses(n,open+1,close,index+1,out);
-
-        }
-
-
-
+        out[index] = '(';
+        generateparantheses(n, open + 1, close, index + 1, out);
+    }
 }
 
 /*
@@ -53,13 +48,13 @@ void generateParenthesis(int n, int openB, int closeB, string str) {
 
 
 */
-int main(){
+int main()
+{
 
-int n;
-char out[100];
-cin>>n;
-generateparantheses(n,0,0,0,out);
+    int n;
+    char out[100];
+    cin >> n;
+    generateparantheses(n, 0, 0, 0, out);
 
-
-return 0;
+    return 0;
 }

@@ -9,7 +9,7 @@ template <typename T>
 class Graph
 {
 
-    map<T, list<T> > adjList;
+    map<T, list<T>> adjList;
 
 public:
     Graph()
@@ -43,18 +43,22 @@ public:
         }
     }
 
-    bool iscyclichelper(T node, map<T, bool> &visited,T parent)
+    bool iscyclichelper(T node, map<T, bool> &visited, T parent)
     {
-        visited[node]=true;
-        for(T neighbour :adjList[node]){
-            if(!visited[neighbour]){
-                bool cycledetected=iscyclichelper(neighbour,visited,node);
-                if(cycledetected){
+        visited[node] = true;
+        for (T neighbour : adjList[node])
+        {
+            if (!visited[neighbour])
+            {
+                bool cycledetected = iscyclichelper(neighbour, visited, node);
+                if (cycledetected)
+                {
                     return true;
                 }
             }
             // in this neighbour is already visited..
-            else if(neighbour!=parent){
+            else if (neighbour != parent)
+            {
                 return true;
             }
         }
@@ -63,19 +67,21 @@ public:
     // CHECK FOR UNDIRECTED  GRAPH USING DFS (RECURSIVE)
     bool iscyclicdfs()
     {
-        map<T,bool>visited;
+        map<T, bool> visited;
         // you can find cycle in dfs tree..
-        for(auto i:adjList){
-            T node=i.first;
-            if(!visited[node]){
-                bool ans=iscyclichelper(node,visited,node);
-                if(ans==true){
+        for (auto i : adjList)
+        {
+            T node = i.first;
+            if (!visited[node])
+            {
+                bool ans = iscyclichelper(node, visited, node);
+                if (ans == true)
+                {
                     return true;
                 }
             }
         }
         return false;
-      
     }
 };
 
@@ -83,10 +89,10 @@ int main(int argc, char const *argv[])
 {
 
     Graph<int> g;
-    g.addEdge(1,2);
-    g.addEdge(1,4);
-    g.addEdge(2,3);
-    g.addEdge(4,3);
+    g.addEdge(1, 2);
+    g.addEdge(1, 4);
+    g.addEdge(2, 3);
+    g.addEdge(4, 3);
 
     if (g.iscyclicdfs())
     {

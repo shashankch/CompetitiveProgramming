@@ -1,45 +1,41 @@
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
+void insertion(int n, int arr[])
+{
 
+    int curr, j;
 
-    void insertion(int n,int arr[]){
+    for (int i = 1; i < n; i++)
+    {
+        curr = arr[i];
 
-        int curr,j;
+        for (j = i - 1; j >= 0 && arr[j] > curr; j--)
+        {
+            arr[j + 1] = arr[j];
+        }
+        arr[j + 1] = curr;
+    }
+}
 
-        for(int i=1;i<n;i++){
-                curr=arr[i];
+int main()
+{
+    int n, arr[1000];
 
-            for( j=i-1;j>=0 && arr[j]>curr;j--){
-                    arr[j+1]=arr[j];
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
 
-
-                    }
-                    arr[j+1]=curr;
-            }
-
-
-
+        cin >> arr[i];
     }
 
-int  main(){
-int n,arr[1000];
+    insertion(n, arr);
+    for (int i = 0; i < n; i++)
+    {
 
-cin>>n;
-for(int i=0;i<n;i++){
+        cout << arr[i] << endl;
+    }
 
-    cin>>arr[i];
+    return 0;
 }
-
-insertion(n,arr);
-for(int i=0;i<n;i++){
-
-    cout<<arr[i]<<endl;
-}
-
-
-
-return 0;
-}
-

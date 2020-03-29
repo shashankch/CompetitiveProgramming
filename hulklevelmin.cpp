@@ -1,37 +1,31 @@
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
+int minjump(int a)
+{
 
-
-int minjump(int a){
-
-    int c=0;
-    while(a>0){
+    int c = 0;
+    while (a > 0)
+    {
         c++;
-        a=a&(a-1);
+        a = a & (a - 1);
     }
 
-
-
-
-
-return c;
+    return c;
 }
-int main(){
+int main()
+{
 
-int t;
-cin>>t;
-while(t--){
+    int t;
+    cin >> t;
+    while (t--)
+    {
 
-    int a;
-    cin>>a;
-    cout<<minjump(a)<<endl;
+        int a;
+        cin >> a;
+        cout << minjump(a) << endl;
+    }
 
-}
-
-
-
-
-return 0;
+    return 0;
 }

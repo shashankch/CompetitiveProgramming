@@ -77,44 +77,44 @@ int main()
     }
     cout << endl;
     vector<int> v{10, 20, 30, 40, 50};
-  
 
-    rotate(v.begin(),v.begin()+2,v.end());
+    rotate(v.begin(), v.begin() + 2, v.end());
     for (int i = 0; i < v.size(); i++)
     {
         cout << v[i] << " ";
     }
-    cout<<endl;
+    cout << endl;
     //next permutation : next lexicographically bigger number
 
-    next_permutation(v.begin(),v.end());
-    for(int x:v){
-        cout<<x<<" ";
+    next_permutation(v.begin(), v.end());
+    for (int x : v)
+    {
+        cout << x << " ";
     }
 
-// swap(a,b) max(a,b) min() reverse(a,a+index);
-    
-    vector<int>test;
-    vector<int> test2(5,0);  // size is 5 int and value is 0
-    vector<int> test3(test2.begin(),test2.end());
-    
-    vector<int> test4{ 1,2,3,10,14};
+    // swap(a,b) max(a,b) min() reverse(a,a+index);
 
-    // auto 
+    vector<int> test;
+    vector<int> test2(5, 0); // size is 5 int and value is 0
+    vector<int> test3(test2.begin(), test2.end());
+
+    vector<int> test4{1, 2, 3, 10, 14};
+
+    // auto
     //v.size()  {no of elements}
     // for(int x:vector)
     // vector<int>:: iterator it;
-    //v.capacity() {size of the underlying array} 
+    //v.capacity() {size of the underlying array}
     // v.max_size()  {max no. of elements a vector can hold in the worst case acc. to avbl memory.}
-    // doubling of memory is expensive operation..  
+    // doubling of memory is expensive operation..
     // push_back pop_back()  in O(1)
     // d.insert(d.begin()+3,4,100);  insert(index,freq,value to insert);  in o(n)
     //d.erase(d.begin()+2,d.begin()+5)
     //d.resize(18)  size is will increase in case of increase..
 
-//d.clear() clear all elements but not the vector.
-//d.empty()
-// d.front()  front element d.back() back element..
-//to avoid doubling use reserve function.. v.reserve(2000)
+    //d.clear() clear all elements but not the vector.
+    //d.empty()
+    // d.front()  front element d.back() back element..
+    //to avoid doubling use reserve function.. v.reserve(2000)
     return 0;
 }

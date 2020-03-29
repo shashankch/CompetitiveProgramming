@@ -1,69 +1,72 @@
 #include <iostream>
-#include<stack>
+#include <stack>
 #define ll long long int
-#include<cstring>
+#include <cstring>
 using namespace std;
-int main(){
+int main()
+{
 
-string str;
-cin>>str;
-stack <char> stk;
-for(ll i=0;i<str.length();i++){
+    string str;
+    cin >> str;
+    stack<char> stk;
+    for (ll i = 0; i < str.length(); i++)
+    {
 
-    if(str[i]=='(' || str[i]=='{' || str[i]=='['){
-        stk.push(str[i]);
-    }
+        if (str[i] == '(' || str[i] == '{' || str[i] == '[')
+        {
+            stk.push(str[i]);
+        }
 
-    if( str[i]==')' ){
+        if (str[i] == ')')
+        {
 
-            if(stk.empty()){
-                cout<<"No";
+            if (stk.empty())
+            {
+                cout << "No";
                 break;
             }
-            if(stk.top()=='('){
+            if (stk.top() == '(')
+            {
                 stk.pop();
                 continue;
-               }
-
-    }
-   if( str[i]=='}' ){
-        if(stk.empty()){
-                cout<<"No";
+            }
+        }
+        if (str[i] == '}')
+        {
+            if (stk.empty())
+            {
+                cout << "No";
                 break;
             }
-            if(stk.top()=='{'){
+            if (stk.top() == '{')
+            {
                 stk.pop();
                 continue;
-               }
-
-
-       }
-     if( str[i]==']' ){
-            if(stk.empty()){
-                cout<<"No";
+            }
+        }
+        if (str[i] == ']')
+        {
+            if (stk.empty())
+            {
+                cout << "No";
                 break;
             }
-            if(stk.top()=='['){
+            if (stk.top() == '[')
+            {
                 stk.pop();
                 continue;
-               }
-
-
-
-
+            }
+        }
     }
-}
 
+    if (stk.empty())
+    {
+        cout << "Yes";
+    }
+    else
+    {
+        cout << "No";
+    }
 
-if(stk.empty()){
-    cout<<"Yes";
-}
-else{
-    cout<<"No";
-}
-
-
-
-
-return 0;
+    return 0;
 }

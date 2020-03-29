@@ -1,108 +1,84 @@
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-
-
-
-class node{
+class node
+{
 public:
     int data;
-    node * next;
+    node *next;
 
-    node(int d){
+    node(int d)
+    {
 
-    data=d;
-    next=NULL;
+        data = d;
+        next = NULL;
     }
-
 };
 
-void insertattail(node*&head,int data){
+void insertattail(node *&head, int data)
+{
 
-
-        if(head==NULL){
+    if (head == NULL)
+    {
         head = new node(data);
         return;
     }
-      node *tail=head;
-      while(tail->next!=NULL){
+    node *tail = head;
+    while (tail->next != NULL)
+    {
 
-            tail=tail->next;
-
-
-      }
-      tail->next=new node(data);
-      return;
-
-
-
+        tail = tail->next;
+    }
+    tail->next = new node(data);
+    return;
 }
 
+void print(node *head)
+{
 
+    while (head != NULL)
+    {
 
-void print(node *head){
-
-
-    while(head!=NULL){
-
-        cout<<head->data<<" ";
-        head=head->next;
-
-
+        cout << head->data << " ";
+        head = head->next;
     }
 
-
-cout<<endl;
-
-
-
+    cout << endl;
 }
 
+void insertionsort(node *&head)
+{
 
-void insertionsort(node *&head){
+    for (node *i = head->next; i != NULL; i = i->next)
+    {
 
+        for (node *j = head; j != i && j->data >= i->data; j = j->next)
+        {
 
-    for(node *i=head->next;i!=NULL;i=i->next){
-
-
-
-        for(node *j=head;j!=i && j->data>=i->data;j=j->next){
-
-           int temp=i->data;
-           i->data=j->data;
-           j->data=temp;
-
+            int temp = i->data;
+            i->data = j->data;
+            j->data = temp;
         }
+    }
+}
 
+int main()
+{
 
+    int n, data;
+    node *head = NULL;
+    cin >> n;
+    while (n--)
+    {
 
+        cin >> data;
 
+        insertattail(head, data);
     }
 
-}
+    insertionsort(head);
+    print(head);
 
-
-
-
-
-int main(){
-
-int n,data;
-node *head=NULL;
-cin>>n;
-while(n--){
-
-    cin>>data;
-
-    insertattail(head,data);
-}
-
-insertionsort(head);
-print(head);
-
-
-
-
-return 0;
+    return 0;
 }

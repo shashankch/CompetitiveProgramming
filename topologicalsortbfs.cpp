@@ -48,53 +48,57 @@ public:
         }
     }
 
-   
     void bfstopologicalsort()
     {
         queue<T> q;
-        map<T,bool> visited;
-        map<T,int> indegree;
-        for(auto i:adjList){
+        map<T, bool> visited;
+        map<T, int> indegree;
+        for (auto i : adjList)
+        {
             // i is pair of node and its list
-            T node =i.first;
-            visited[node]=false;
-            indegree[node]=0;
-
+            T node = i.first;
+            visited[node] = false;
+            indegree[node] = 0;
         }
         // initialization of the indegrees of all the nodes
 
-        for(auto i:adjList){
+        for (auto i : adjList)
+        {
 
-            T u=i.first;
-            for(T v:adjList[u]){
+            T u = i.first;
+            for (T v : adjList[u])
+            {
                 indegree[v]++;
             }
         }
         // find out all the nodes with 0 indegree
-        for(auto i: adjList){
-            T node=i.first;
-            if(indegree[node]==0){
+        for (auto i : adjList)
+        {
+            T node = i.first;
+            if (indegree[node] == 0)
+            {
                 q.push(node);
             }
         }
 
         // start with the algorithm
 
-        while(!q.empty()){
+        while (!q.empty())
+        {
 
-            T node=q.front();
+            T node = q.front();
             q.pop();
-            cout<<node<<"-->";
+            cout << node << "-->";
 
-            for(T neighbour:adjList[node]){
+            for (T neighbour : adjList[node])
+            {
                 indegree[neighbour]--;
 
-                if(indegree[neighbour]==0){
+                if (indegree[neighbour] == 0)
+                {
                     q.push(neighbour);
                 }
             }
-
-
         }
     }
 };

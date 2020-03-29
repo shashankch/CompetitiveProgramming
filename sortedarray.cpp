@@ -1,52 +1,44 @@
 
-#include<iostream>
+#include <iostream>
 #define ll long long int
 using namespace std;
 
+bool isortedarr(ll arr[], ll n)
+{
 
-
-bool isortedarr(ll arr[],ll n){
-
-
-    if(n==1){
+    if (n == 1)
+    {
         return true;
     }
 
-    if(arr[0]<=arr[1] && isortedarr(arr+1,n-1)){
+    if (arr[0] <= arr[1] && isortedarr(arr + 1, n - 1))
+    {
         return true;
     }
 
-
-
-return false;
-
+    return false;
 }
 
-int main(){
+int main()
+{
 
+    ll n;
+    cin >> n;
+    ll arr[n];
 
+    for (ll i = 0; i < n; i++)
+    {
 
-ll n;
-cin>>n;
-ll arr[n];
+        cin >> arr[i];
+    }
+    if (isortedarr(arr, n))
+    {
+        cout << "true";
+    }
+    else
+    {
+        cout << "false";
+    }
 
-for(ll i=0;i<n;i++){
-
-    cin>>arr[i];
-
-}
-if(isortedarr(arr,n)){
-    cout<<"true";
-
-}
-else {
-    cout<<"false";
-}
-
-
-
-
-
-
-return 0;
+    return 0;
 }

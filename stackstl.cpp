@@ -6,7 +6,8 @@
 using namespace std;
 //Stack in C++ Standard Template Library
 
-int main() {
+int main()
+{
 
     stack<string> s;
 
@@ -14,12 +15,11 @@ int main() {
     s.push("Mango");
     s.push("Guava");
 
-    while(!s.empty()){
-        cout<<s.top() <<endl;
+    while (!s.empty())
+    {
+        cout << s.top() << endl;
         s.pop();
     }
-
-
 
     return 0;
 }

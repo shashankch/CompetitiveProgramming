@@ -1,46 +1,46 @@
 
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
+void counting(int n, int arr[])
+{
 
-
-    void counting(int n,int arr[]){
-
-    int p=0;
-    int cnt[1000001]={0};
-          int output[n];
-        for(int i=0;i<n;i++){
-        cnt[arr[i]]++;}
-
-        for(int i=0;i<=1000001;i++){
-
-            while(cnt[i]--){
-                output[p++]=i;
-            }
-
-
-        }
-
-        for(int i=0;i<n;i++){
-            cout<<output[i]<<" ";
-        }
-
+    int p = 0;
+    int cnt[1000001] = {0};
+    int output[n];
+    for (int i = 0; i < n; i++)
+    {
+        cnt[arr[i]]++;
     }
 
-int  main(){
-int n,arr[1000001];
+    for (int i = 0; i <= 1000001; i++)
+    {
 
-cin>>n;
-for(int i=0;i<n;i++){
+        while (cnt[i]--)
+        {
+            output[p++] = i;
+        }
+    }
 
-    cin>>arr[i];
+    for (int i = 0; i < n; i++)
+    {
+        cout << output[i] << " ";
+    }
 }
 
-counting(n,arr);
+int main()
+{
+    int n, arr[1000001];
 
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
 
+        cin >> arr[i];
+    }
 
-return 0;
+    counting(n, arr);
+
+    return 0;
 }
-

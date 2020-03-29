@@ -43,29 +43,30 @@ public:
         }
     }
 
-    void dfshelper(T node,map<T,bool> &visited){
+    void dfshelper(T node, map<T, bool> &visited)
+    {
 
-            // whenever come to a node mark it visited.
-            visited[node]=true;
-            cout<<node<<" ";
+        // whenever come to a node mark it visited.
+        visited[node] = true;
+        cout << node << " ";
 
-          // try to find out a node which is neighbour of current node and unvisited.
-          for(T neighbour:adjList[node]) {
+        // try to find out a node which is neighbour of current node and unvisited.
+        for (T neighbour : adjList[node])
+        {
 
-                if(!visited[neighbour]){
-                    dfshelper(neighbour,visited);
-                }
-
-          } 
-
+            if (!visited[neighbour])
+            {
+                dfshelper(neighbour, visited);
+            }
+        }
     }
     void dfs(T src)
     {
 
-        map<T,bool> visited;
-        
-        dfshelper(src,visited);
-}
+        map<T, bool> visited;
+
+        dfshelper(src, visited);
+    }
 };
 
 int main(int argc, char const *argv[])
@@ -81,6 +82,6 @@ int main(int argc, char const *argv[])
     g2.addEdge(3, 5);
     g2.addEdge(3, 4);
     g2.dfs(0);
- 
+
     return 0;
 }

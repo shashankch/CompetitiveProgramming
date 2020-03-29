@@ -1,57 +1,44 @@
 
-#include<iostream>
-#include<math.h>
+#include <iostream>
+#include <math.h>
 using namespace std;
 
+int stringtoint(string str)
+{
 
-int stringtoint(string str){
-
-    if(str.length()==1){
-        return str[0]-'0';
-
+    if (str.length() == 1)
+    {
+        return str[0] - '0';
     }
-    double y=stringtoint(str.substr(1));
-    double x=str[0]-'0';
+    double y = stringtoint(str.substr(1));
+    double x = str[0] - '0';
 
-    x=x*pow(10,str.length()-1)+y;
+    x = x * pow(10, str.length() - 1) + y;
     return (int)x;
-
-
-
 }
 
-int stringtoint2(string str,int len){
+int stringtoint2(string str, int len)
+{
 
+    if (len < 0)
+        return 0;
 
-        if(len<0)
-            return 0 ;
+    int a = stringtoint2(str, len - 1);
+    int b = a * 10 + (str[len] - '0');
 
-        int a=stringtoint2(str,len-1);
-        int b=a*10+(str[len]-'0');
-
-
-
-        return b;
-
-
-
-
-
-
+    return b;
 }
 
-int main(){
+int main()
+{
 
+    string str;
 
-string str;
+    cin >> str;
+    int len = str.length();
+    cout << stringtoint(str);
+    cout << endl;
+    cout << stringtoint2(str, len - 1);
 
-
-cin>>str;
-int len=str.length();
-cout<<stringtoint(str);
-cout<<endl;
-cout<<stringtoint2(str,len-1);
-
-
-return 0;
+    return 0;
 }

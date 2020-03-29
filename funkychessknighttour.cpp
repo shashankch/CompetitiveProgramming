@@ -1,36 +1,30 @@
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 int board[10][10];
-int high=0;
+int high = 0;
 
-void knighttourmaxvisited(int r,int c,int count){
+void knighttourmaxvisited(int r, int c, int count)
+{
 
+	if (r < 0 || c < 0 || r >= 10 || c >= 10 || board[r][c] == 0)
+	{
+		return;
+	}
 
-    if(r<0 || c<0 || r>=10 || c>=10 || board[r][c]==0){
-        return;
+	board[r][c] = 0;
 
-    }
+	high = max(high, count + 1);
+	knighttourmaxvisited(r - 2, c - 1, count + 1);
+	knighttourmaxvisited(r - 2, c + 1, count + 1);
+	knighttourmaxvisited(r - 1, c - 2, count + 1);
+	knighttourmaxvisited(r - 1, c + 2, count + 1);
+	knighttourmaxvisited(r + 1, c - 2, count + 1);
+	knighttourmaxvisited(r + 1, c + 2, count + 1);
+	knighttourmaxvisited(r + 2, c - 1, count + 1);
+	knighttourmaxvisited(r + 2, c + 1, count + 1);
 
-    board[r][c]=0;
-
-    high=max(high,count+1);
-    knighttourmaxvisited(r-2,c-1,count+1);
-    knighttourmaxvisited(r-2,c+1,count+1);
-    knighttourmaxvisited(r-1,c-2,count+1);
-    knighttourmaxvisited(r-1,c+2,count+1);
-    knighttourmaxvisited(r+1,c-2,count+1);
-    knighttourmaxvisited(r+1,c+2,count+1);
-    knighttourmaxvisited(r+2,c-1,count+1);
-    knighttourmaxvisited(r+2,c+1,count+1);
-
-   board[r][c]=1;
-
-
-
-
-
-
+	board[r][c] = 1;
 }
 ////////////////////////////////////////////////////////////////////
 /*
@@ -146,27 +140,27 @@ int main() {
 }
 
 */
-int main(){
+int main()
+{
 
-int n;
-cin>>n;
+	int n;
+	cin >> n;
 
-int sum=0;
-for(int i=0;i<n;i++){
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+	{
 
-    for(int j=0;j<n;j++){
-        cin>>board[i][j];
-        if(board[i][j]){
-            sum++;
-        }
-    }
+		for (int j = 0; j < n; j++)
+		{
+			cin >> board[i][j];
+			if (board[i][j])
+			{
+				sum++;
+			}
+		}
+	}
 
-}
+	knighttourmaxvisited(0, 0, 0);
 
-knighttourmaxvisited(0,0,0);
-
-cout<<sum-high<<endl;
-
-
-
+	cout << sum - high << endl;
 }

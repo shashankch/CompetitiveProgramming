@@ -1,5 +1,5 @@
 #include <iostream>
-#include<climits>
+#include <climits>
 #include <map>
 #include <list>
 #include <queue>
@@ -49,15 +49,16 @@ public:
 
         queue<T> q;
         map<T, T> dist;
-        map<T,T>parent;
+        map<T, T> parent;
 
-        for(auto i:adjList){
-            dist[i.first]=INT_MAX;
+        for (auto i : adjList)
+        {
+            dist[i.first] = INT_MAX;
         }
 
         q.push(src);
         dist[src] = 0;
-        parent[src]=src;
+        parent[src] = src;
 
         while (!q.empty())
         {
@@ -68,22 +69,21 @@ public:
             // for the neighbours of the current node,find out the node which are not visited;
             for (int neighbour : adjList[node])
             {
-                if (dist[neighbour]==INT_MAX)
+                if (dist[neighbour] == INT_MAX)
                 {
                     q.push(neighbour);
-                    dist[neighbour] =dist[node]+1;
-                    parent[neighbour]=node; 
-
+                    dist[neighbour] = dist[node] + 1;
+                    parent[neighbour] = node;
                 }
             }
         }
 
-    // print the distance to all the nodes
-    for(auto i:adjList){
-        T node=i.first;
-        cout<<"Dist of "<<node<<" from "<<src<<" is "<<dist[node]<<endl;
-    }
-
+        // print the distance to all the nodes
+        for (auto i : adjList)
+        {
+            T node = i.first;
+            cout << "Dist of " << node << " from " << src << " is " << dist[node] << endl;
+        }
     }
 };
 

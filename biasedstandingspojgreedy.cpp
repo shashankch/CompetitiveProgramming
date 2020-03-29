@@ -1,47 +1,45 @@
 
 
 ///spoj BAISED - Biased Standings
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
+int main()
+{
 
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        int arr[n + 1] = {0};
+        for (int i = 1; i <= n; i++)
+        {
 
-int main(){
+            string team;
+            int rk;
+            cin >> team;
+            cin >> rk;
+            arr[rk]++;
+        }
 
-int t;
-cin>>t;
-while(t--){
-int n;
-cin>>n;
-int arr[n+1]={0};
-for(int i=1;i<=n;i++){
+        int pos = 1;
+        int sum = 0;
+        for (int i = 1; i <= n; i++)
+        {
 
-    string team;
-    int rk;
-    cin>>team;
-    cin>>rk;
-    arr[rk]++;
-}
+            while (arr[i]--)
+            {
 
-int pos=1;
-int sum=0;
-for(int i=1;i<=n;i++){
+                sum += abs(pos - i);
+                pos++;
+            }
+        }
 
-    while(arr[i]--){
-
-        sum+=abs(pos-i);
-        pos++;
+        cout << sum << endl;
     }
 
-}
-
-cout<<sum<<endl;
-}
-
-
-
-
-
-return 0;
+    return 0;
 }

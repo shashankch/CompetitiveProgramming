@@ -4,47 +4,56 @@
 
 using namespace std;
 
-class node{
+class node
+{
 public:
     int data;
-    node* left;
-    node* right;
+    node *left;
+    node *right;
 
-    node(int data){
+    node(int data)
+    {
         this->data = data;
         this->left = NULL;
-        this->right= NULL;
+        this->right = NULL;
     }
 };
 
 // For building BST
 
-node* insertInBST(node*root,int data){
-    if(root==NULL){
-        node* n = new node(data);
+node *insertInBST(node *root, int data)
+{
+    if (root == NULL)
+    {
+        node *n = new node(data);
         root = n;
         return root;
         // return new node(data);
     }
 
-    if(data>root->data){
-        root->right = insertInBST(root->right,data);
-    }else{
-        root->left = insertInBST(root->left,data);
+    if (data > root->data)
+    {
+        root->right = insertInBST(root->right, data);
+    }
+    else
+    {
+        root->left = insertInBST(root->left, data);
     }
 
     return root;
 }
 
-node* construct(){
-    node* root = NULL;
+node *construct()
+{
+    node *root = NULL;
 
     int data;
-    cin>>data;
+    cin >> data;
 
-    while(data!=-1){
-        root = insertInBST(root,data);
-        cin>>data;
+    while (data != -1)
+    {
+        root = insertInBST(root, data);
+        cin >> data;
     }
 
     return root;
@@ -52,17 +61,20 @@ node* construct(){
 
 // For building Binary Tree
 
-node* buildTree(node* root){
+node *buildTree(node *root)
+{
     int data;
-    cin>>data;
+    cin >> data;
 
-    if(data ==-1){
+    if (data == -1)
+    {
         return NULL;
     }
 
-    if(root==NULL){
-        node* n = new node(data);
-        root=n;
+    if (root == NULL)
+    {
+        node *n = new node(data);
+        root = n;
     }
 
     root->left = buildTree(root->left);
@@ -71,74 +83,86 @@ node* buildTree(node* root){
     return root;
 }
 
-void traverseInorder(node* root,int &k,int &ans){
-    if(root==NULL){
+void traverseInorder(node *root, int &k, int &ans)
+{
+    if (root == NULL)
+    {
         return;
     }
 
-    traverseInorder(root->left,k,ans);
+    traverseInorder(root->left, k, ans);
 
     k--;
-    if(k==0){
+    if (k == 0)
+    {
         ans = root->data;
     }
 
-    traverseInorder(root->right,k,ans);
+    traverseInorder(root->right, k, ans);
 }
 
-int kthSmallest(node* root, int k) {
+int kthSmallest(node *root, int k)
+{
     int ans = 0;
 
-    traverseInorder(root,k,ans);
+    traverseInorder(root, k, ans);
     return ans;
 }
 
-void preorder(node*root){
-    if(root==NULL){
+void preorder(node *root)
+{
+    if (root == NULL)
+    {
         return;
     }
 
-    cout<<root->data<<" ";
+    cout << root->data << " ";
 
     preorder(root->left);
     preorder(root->right);
 }
 
-void inorder(node*root){
-    if(root==NULL){
+void inorder(node *root)
+{
+    if (root == NULL)
+    {
         return;
     }
 
     inorder(root->left);
 
-    cout<<root->data<<" ";
+    cout << root->data << " ";
 
     inorder(root->right);
 }
 
 int maxPath = INT_MIN;
 
-int maxPathNodes(node*root){
-    if(root==NULL){
+int maxPathNodes(node *root)
+{
+    if (root == NULL)
+    {
         return 0;
     }
 
-    int leftMax = max(0,maxPathNodes(root->left));
-    int rightMax = max(0,maxPathNodes(root->right));
+    int leftMax = max(0, maxPathNodes(root->left));
+    int rightMax = max(0, maxPathNodes(root->right));
 
-    maxPath = max(maxPath,leftMax + rightMax + root->data);
+    maxPath = max(maxPath, leftMax + rightMax + root->data);
 
-    return max(leftMax,rightMax) + root->data;
+    return max(leftMax, rightMax) + root->data;
 }
 
-class TreeDetail{
+class TreeDetail
+{
 public:
     int size;
     bool bst;
     int min;
     int max;
 
-    TreeDetail(){
+    TreeDetail()
+    {
         size = 0;
         bst = true;
         min = INT_MAX;
@@ -146,68 +170,73 @@ public:
     }
 };
 
-TreeDetail largestBSTinBinaryTree(node*root){
+TreeDetail largestBSTinBinaryTree(node *root)
+{
     TreeDetail val;
 
-    if(root==NULL){
+    if (root == NULL)
+    {
         return val;
     }
 
     TreeDetail leftDetail = largestBSTinBinaryTree(root->left);
     TreeDetail rightDetail = largestBSTinBinaryTree(root->right);
 
-    if(leftDetail.bst == false or rightDetail.bst==false or root->data < leftDetail.max or root->data > rightDetail.min){
+    if (leftDetail.bst == false or rightDetail.bst == false or root->data < leftDetail.max or root->data > rightDetail.min)
+    {
         val.bst = false;
-        val.size = max(leftDetail.size,rightDetail.size);
+        val.size = max(leftDetail.size, rightDetail.size);
         return val;
     }
 
     val.bst = true;
     val.size = leftDetail.size + rightDetail.size + 1;
 
-    val.min = root->left!=NULL ? leftDetail.min : root->data;
+    val.min = root->left != NULL ? leftDetail.min : root->data;
 
-    val.max = root->right!=NULL ? rightDetail.max : root->data;
+    val.max = root->right != NULL ? rightDetail.max : root->data;
 
     return val;
 }
 
-void serialize(node* root){
-    if(root==NULL){
-        cout<<(-1)<<" ";
+void serialize(node *root)
+{
+    if (root == NULL)
+    {
+        cout << (-1) << " ";
         return;
     }
 
-    cout<<root->data<<" ";
+    cout << root->data << " ";
     serialize(root->left);
     serialize(root->right);
 }
 
-int main(){
+int main()
+{
 
-//     node* root = construct();
-//     inorder(root);
-//     cout<<endl;
+    //     node* root = construct();
+    //     inorder(root);
+    //     cout<<endl;
 
-//    cout<<kthSmallest(root,3)<<endl;
+    //    cout<<kthSmallest(root,3)<<endl;
 
-    node* root = NULL;
+    node *root = NULL;
     root = buildTree(root);
 
     serialize(root);
 
-//    maxPathNodes(root);
-//    cout<<maxPath<<endl;
-//
-//    // node* root = construct();
-//
-//    TreeDetail val = largestBSTinBinaryTree(root);
-//
-//    cout<<val.size<<endl;
+    //    maxPathNodes(root);
+    //    cout<<maxPath<<endl;
+    //
+    //    // node* root = construct();
+    //
+    //    TreeDetail val = largestBSTinBinaryTree(root);
+    //
+    //    cout<<val.size<<endl;
 
     return 0;
 }
-
 
 // Input for largest bst in a bt
 // 8 4 2 1 -1 -1 3 -1 -1 6 5 -1 -1 7 -1 -1 9 7 -1 -1 10 -1 -1

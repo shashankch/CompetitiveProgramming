@@ -1,118 +1,104 @@
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class node{
+class node
+{
 
-    public:
+public:
     int data;
     node *left;
     node *right;
 
+    node(int d)
+    {
 
-    node(int d){
-
-        data=d;
-        left=NULL;
-        right=NULL;
-}
+        data = d;
+        left = NULL;
+        right = NULL;
+    }
 };
-node *buildtree(string exist){
+node *buildtree(string exist)
+{
 
-    if(exist=="true"){
+    if (exist == "true")
+    {
 
         int d;
-        cin>>d;
-        node *root=new node(d);
+        cin >> d;
+        node *root = new node(d);
         string lt;
-        cin>>lt;
-        if(lt=="true"){
-            root->left=buildtree(lt);
+        cin >> lt;
+        if (lt == "true")
+        {
+            root->left = buildtree(lt);
         }
         string rt;
-        cin>>rt;
-        if(rt=="true"){
-            root->right=buildtree(rt);
+        cin >> rt;
+        if (rt == "true")
+        {
+            root->right = buildtree(rt);
         }
 
-
-
-       return root;
-
-
+        return root;
     }
 
     return NULL;
-
-
-
-
 }
 
+class check
+{
 
-class check{
-
-
-/// here we can use single variable height to represent balance part by setting it to -1..
-public :
+    /// here we can use single variable height to represent balance part by setting it to -1..
+public:
     int height;
     bool balance;
-
-
-
 };
 
-
-
-
-check isheightbalanced(node *root){
+check isheightbalanced(node *root)
+{
 
     check ch;
-    if(root==NULL){
+    if (root == NULL)
+    {
 
-        ch.height=0;
-        ch.balance=true;
+        ch.height = 0;
+        ch.balance = true;
 
         return ch;
-
     }
 
-    check left=isheightbalanced(root->left);
-    check right=isheightbalanced(root->right);
+    check left = isheightbalanced(root->left);
+    check right = isheightbalanced(root->right);
 
-    ch.height=max(left.height,right.height)+1;
+    ch.height = max(left.height, right.height) + 1;
 
+    if (left.balance && right.balance && abs(left.height - right.height) <= 1)
+    {
 
-    if(left.balance && right.balance && abs(left.height-right.height)<=1 ){
-
-        ch.balance=true;
-
+        ch.balance = true;
     }
-    else{
-        ch.balance=false;
+    else
+    {
+        ch.balance = false;
     }
 
-
-
-return ch;
-
-
+    return ch;
 }
 
+int main()
+{
 
-int main(){
+    node *temp = buildtree("true");
+    check res = isheightbalanced(temp);
+    if (res.balance)
+    {
+        cout << "true";
+    }
+    else
+    {
+        cout << "false";
+    }
 
-
-node *temp=buildtree("true");
-check res=isheightbalanced(temp);
-if(res.balance){
-    cout<<"true";
-}
-else {
-    cout<<"false";
-}
-
-
-
-return 0;
+    return 0;
 }

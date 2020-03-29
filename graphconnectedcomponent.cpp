@@ -64,19 +64,22 @@ public:
     {
 
         map<T, bool> visited;
-        int component=1;
+        int component = 1;
         dfshelper(src, visited);
-        cout<<endl;
+        cout << endl;
 
-        for(auto i:adjList){
-            T city=i.first;
-            if(!visited[city]){
-                dfshelper(city,visited);
+        for (auto i : adjList)
+        {
+            T city = i.first;
+            if (!visited[city])
+            {
+                dfshelper(city, visited);
                 component++;
             }
         }
-        
-        cout<<endl<<"The current graph had "<<component<<" components"<<endl;
+
+        cout << endl
+             << "The current graph had " << component << " components" << endl;
     }
 };
 

@@ -1,53 +1,46 @@
 
-#include<iostream>
-#include<unordered_map>
+#include <iostream>
+#include <unordered_map>
 using namespace std;
 
-
-
-
-int main(){
-
-unordered_map<int,int>mp;
-int n,k;
-cin>>n>>k;
-int arr[n+1];
-for(int i=1;i<=n;i++){
-    cin>>arr[i];
-    mp.insert(make_pair(arr[i],i));
-}
-
-
-int num=n;
-int count=0;
-while(num>=1 && count!=k){
-
-
-    int index=mp[num];
-    int optimum=n-num+1;
-    if(index!=optimum ){
-        swap(arr[index],arr[optimum]);
-        mp[arr[index]]=index;
-        mp[arr[optimum]]=optimum;
-       count++;
-
-    }
-    num--;
-    }
-
-
-
-for(int i=1;i<=n;i++)
+int main()
 {
 
-    cout<<arr[i]<<" ";
+    unordered_map<int, int> mp;
+    int n, k;
+    cin >> n >> k;
+    int arr[n + 1];
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> arr[i];
+        mp.insert(make_pair(arr[i], i));
+    }
+
+    int num = n;
+    int count = 0;
+    while (num >= 1 && count != k)
+    {
+
+        int index = mp[num];
+        int optimum = n - num + 1;
+        if (index != optimum)
+        {
+            swap(arr[index], arr[optimum]);
+            mp[arr[index]] = index;
+            mp[arr[optimum]] = optimum;
+            count++;
+        }
+        num--;
+    }
+
+    for (int i = 1; i <= n; i++)
+    {
+
+        cout << arr[i] << " ";
+    }
+
+    return 0;
 }
-
-
-return 0;
-
-}
-
 
 /*
 #include <bits/stdc++.h>

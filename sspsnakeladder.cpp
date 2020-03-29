@@ -46,7 +46,7 @@ public:
         }
     }
 
-    int sssp(T src,T dest)
+    int sssp(T src, T dest)
     {
 
         queue<T> q;
@@ -65,7 +65,7 @@ public:
         while (!q.empty())
         {
             T node = q.front();
-          //  cout << node << " ";
+            //  cout << node << " ";
             q.pop();
 
             // for the neighbours of the current node,find out the node which are not visited;
@@ -87,14 +87,14 @@ public:
         //     cout << "Dist of " << node << " is " << dist[node] << endl;
         // }
 
-        // you can go back from destination 
-        T temp=dest;
-        while(temp!=src){
-            cout<<temp<<"<--";
-            temp=parent[temp];
+        // you can go back from destination
+        T temp = dest;
+        while (temp != src)
+        {
+            cout << temp << "<--";
+            temp = parent[temp];
         }
-        cout<<src<<endl;
-
+        cout << src << endl;
 
         return dist[dest];
     }
@@ -104,30 +104,30 @@ int main()
 {
 
     Graph<int> g;
-    int board[50]={0};
-    board[2]=13;
-    board[5]=2;
-    board[9]=18;
-    board[18]=11;
-    board[17]=-13;
-    board[20]=-14;
-    board[24]=-8;
-    board[25]=-10;
-    board[32]=-2;
-    board[34]=-22;
-  
+    int board[50] = {0};
+    board[2] = 13;
+    board[5] = 2;
+    board[9] = 18;
+    board[18] = 11;
+    board[17] = -13;
+    board[20] = -14;
+    board[24] = -8;
+    board[25] = -10;
+    board[32] = -2;
+    board[34] = -22;
+
     /// construct graph..add pairs of u,v
-    for(int u=0;u<=36;u++){
+    for (int u = 0; u <= 36; u++)
+    {
 
         // dice throw at every node..
-        for(int dice=1;dice<=6;dice++){
-            int v=u+dice+board[u+dice];
-            g.addEdge(u,v,false);
+        for (int dice = 1; dice <= 6; dice++)
+        {
+            int v = u + dice + board[u + dice];
+            g.addEdge(u, v, false);
         }
-
     }
 
-
-    cout<<"The shortest dist is "<<g.sssp(0,36)<<endl;
+    cout << "The shortest dist is " << g.sssp(0, 36) << endl;
     return 0;
 }

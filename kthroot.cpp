@@ -1,57 +1,55 @@
-#include<iostream>
+#include <iostream>
 #define ll long long int
 using namespace std;
 
-ll pow(ll no,ll exp){
+ll pow(ll no, ll exp)
+{
 
-ll res=1;
-while(exp--){
-   res*=no;
+    ll res = 1;
+    while (exp--)
+    {
+        res *= no;
+    }
+
+    return res;
 }
-
-
-return res;
-
-}
-
-
 
 ///https://www.geeksforgeeks.org/n-th-root-number/
 
+int main()
+{
 
+    ll t, n, k, ans;
+    cin >> t;
+    while (t--)
+    {
+        cin >> n >> k;
+        ll s = 0;
+        ll e = n;
+        while (s <= e)
+        {
 
-int main(){
-
-ll t,n,k,ans;
-cin>>t;
-while(t--){
-    cin>>n>>k;
-   ll s=0;
-   ll e=n;
-    while(s<=e){
-
-
-      ll mid=(s+e)/2;
-        if(pow(mid,k)==n){
-            ans=mid;
-            break;
+            ll mid = (s + e) / 2;
+            if (pow(mid, k) == n)
+            {
+                ans = mid;
+                break;
+            }
+            else if (pow(mid, k) < n)
+            {
+                ans = mid;
+                s = mid + 1;
+            }
+            else
+            {
+                e = mid - 1;
+            }
         }
-        else if(pow(mid,k)<n){
-            ans=mid;
-            s=mid+1;
-        }
-        else {
-            e=mid-1;
-        }
+
+        cout << ans << endl;
     }
-
-    cout<<ans<<endl;
+    return 0;
 }
-return 0;
-}
-
-
-
 
 /* solution
 using namespace std;
@@ -99,8 +97,3 @@ int main()
 
 
 */
-
-
-
-
-

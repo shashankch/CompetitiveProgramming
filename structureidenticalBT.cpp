@@ -1,83 +1,84 @@
 
 
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
-class node{
+class node
+{
 
-    public:
+public:
     int data;
     node *left;
     node *right;
 
+    node(int d)
+    {
 
-    node(int d){
-
-        data=d;
-        left=NULL;
-        right=NULL;
-}
+        data = d;
+        left = NULL;
+        right = NULL;
+    }
 };
 
-node *buildtree(string exist){
+node *buildtree(string exist)
+{
 
-    if(exist=="true"){
+    if (exist == "true")
+    {
 
         int d;
-        cin>>d;
-        node *root=new node(d);
+        cin >> d;
+        node *root = new node(d);
         string lt;
-        cin>>lt;
-        if(lt=="true"){
-            root->left=buildtree(lt);
+        cin >> lt;
+        if (lt == "true")
+        {
+            root->left = buildtree(lt);
         }
         string rt;
-        cin>>rt;
-        if(rt=="true"){
-            root->right=buildtree(rt);
+        cin >> rt;
+        if (rt == "true")
+        {
+            root->right = buildtree(rt);
         }
 
-
-
-       return root;
-
-
+        return root;
     }
 
     return NULL;
-
-
-
-
 }
 
-bool isidentical(node *a,node *b){
+bool isidentical(node *a, node *b)
+{
 
-        if(a==NULL && b==NULL){
-            return true;
-        }
+    if (a == NULL && b == NULL)
+    {
+        return true;
+    }
 
-        if(a!=NULL && b!=NULL){
+    if (a != NULL && b != NULL)
+    {
 
-        bool left=isidentical(a->left,b->left);
-        bool right=isidentical(a->right,b->right);
+        bool left = isidentical(a->left, b->left);
+        bool right = isidentical(a->right, b->right);
         return left && right;
-        }
-        return false;
+    }
+    return false;
 }
 
-
-int main(){
- node *a=buildtree("true");
- node *b=buildtree("true");
-    if(isidentical(a,b)){
-        cout<<"true";
+int main()
+{
+    node *a = buildtree("true");
+    node *b = buildtree("true");
+    if (isidentical(a, b))
+    {
+        cout << "true";
     }
-    else{
-        cout<<"false";
+    else
+    {
+        cout << "false";
     }
 
-
-return 0;
+    return 0;
 }

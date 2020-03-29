@@ -1,59 +1,60 @@
 
-#include<iostream>
-#include<cstring>
-#include<vector>
-#include<algorithm>
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
+vector<string> ans;
+bool ifpresent(string str, int i, int j)
+{
 
-vector<string>ans;
-bool ifpresent(string str,int i,int j){
-
-for(int k=i;k<j;k++){
-            if(str[j]==str[k]){
-               return false;
-            }
+    for (int k = i; k < j; k++)
+    {
+        if (str[j] == str[k])
+        {
+            return false;
         }
+    }
 
-        return true;
+    return true;
 }
 
+void trickypermute(string str, int len, int i)
+{
 
-
-
-void trickypermute(string str,int len,int i){
-
-
-    if(i==str.length()){
+    if (i == str.length())
+    {
 
         ans.push_back(str);
         //cout<<str<<endl;
-        return ;
+        return;
     }
-    int flag=0;
-    for(int j=i;j<str.length();j++){
+    int flag = 0;
+    for (int j = i; j < str.length(); j++)
+    {
 
-
-        if(ifpresent(str,i,j)){
-            swap(str[i],str[j]);
-            trickypermute(str,len,i+1);
-            }
+        if (ifpresent(str, i, j))
+        {
+            swap(str[i], str[j]);
+            trickypermute(str, len, i + 1);
         }
+    }
 }
-int main(){
+int main()
+{
 
+    string str;
+    cin >> str;
+    int len = str.length();
+    trickypermute(str, len, 0);
+    sort(ans.begin(), ans.end());
+    for (auto x : ans)
+    {
+        cout << x << endl;
+    }
 
-string str;
-cin>>str;
-int len=str.length();
-trickypermute(str,len,0);
-sort(ans.begin(),ans.end());
-for(auto x:ans){
-    cout<<x<<endl;
-}
-
-
-return 0;
+    return 0;
 }
 
 /*

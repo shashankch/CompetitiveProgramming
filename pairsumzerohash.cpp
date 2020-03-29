@@ -1,36 +1,31 @@
 
-#include<iostream>
-#include<unordered_map>
+#include <iostream>
+#include <unordered_map>
 
 using namespace std;
-int main(){
+int main()
+{
 
-int arr[]={1,3,-2,6,-6,2,8};
-unordered_map<int,int> mypair;
-///unordered_set<int> s; can also be done;
-for(int i=0;i<7;i++){
+    int arr[] = {1, 3, -2, 6, -6, 2, 8};
+    unordered_map<int, int> mypair;
+    ///unordered_set<int> s; can also be done;
+    for (int i = 0; i < 7; i++)
+    {
 
-    mypair[arr[i]]=arr[i];
+        mypair[arr[i]] = arr[i];
+    }
+    int sum = 0;
+    for (auto val : mypair)
+    {
 
+        if (mypair.find(sum - val.first) != mypair.end())
+        {
 
-}
-int sum=0;
-for(auto val:mypair){
-
-    if(mypair.find(sum-val.first)!=mypair.end()){
-
-
-        cout<<"pairs are:"<<val.first<<","<<sum-val.first<<endl;
-
+            cout << "pairs are:" << val.first << "," << sum - val.first << endl;
+        }
     }
 
-
-}
-
-
-
-return 0;
-
+    return 0;
 }
 
 /*

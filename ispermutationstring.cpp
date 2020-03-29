@@ -1,69 +1,60 @@
 
 
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <cstring>
 using namespace std;
 
-bool ispermutations(char *s1,char *s2){
+bool ispermutations(char *s1, char *s2)
+{
 
-    int l1=strlen(s1);
-    int l2=strlen(s2);
+    int l1 = strlen(s1);
+    int l2 = strlen(s2);
 
-    if(l1!=l2){
+    if (l1 != l2)
+    {
         return false;
     }
 
-        int freq[26]={0};
+    int freq[26] = {0};
 
-        for(int i=0;i<l1;i++){
+    for (int i = 0; i < l1; i++)
+    {
 
-                freq[s1[i]-'a']++;
+        freq[s1[i] - 'a']++;
+    }
 
+    for (int i = 0; i < l2; i++)
+    {
 
+        freq[s2[i] - 'a']--;
+    }
 
+    for (int i = 0; i < 26; i++)
+    {
+
+        if (freq[i] != 0)
+        {
+            return false;
         }
+    }
 
-
-        for(int i=0;i<l2;i++){
-
-                freq[s2[i]-'a']--;
-
-
-
-        }
-
-
-        for(int i=0;i<26;i++){
-
-                if(freq[i]!=0){
-                    return false;
-                }
-
-
-
-        }
-
-
-return true;
+    return true;
 }
 
-
-
-
-int main(){
-
-
-char s1[100],s2[100];
-cin>>s1;
-cin>>s2;
-if(ispermutations(s1,s2))
+int main()
 {
 
-    cout<<"yes";
-}
-else{
-    cout<<"no";
-}
-return 0;
-}
+    char s1[100], s2[100];
+    cin >> s1;
+    cin >> s2;
+    if (ispermutations(s1, s2))
+    {
 
+        cout << "yes";
+    }
+    else
+    {
+        cout << "no";
+    }
+    return 0;
+}

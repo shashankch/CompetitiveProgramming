@@ -48,46 +48,47 @@ public:
         }
     }
 
-    void dfshelper(T node, map<T, bool> &visited,list<T> &ordering)
+    void dfshelper(T node, map<T, bool> &visited, list<T> &ordering)
     {
 
-        visited[node]=true;
+        visited[node] = true;
         // will call dfs on the unvisited neighbours of the current node.
 
-        for(T neighbour:adjList[node]){
+        for (T neighbour : adjList[node])
+        {
 
-            if(!visited[neighbour]){
-                dfshelper(neighbour,visited,ordering);
+            if (!visited[neighbour])
+            {
+                dfshelper(neighbour, visited, ordering);
             }
         }
         // add 1 line for TS
         // at this point,all the children of the current node have been visited.
         // so we can add current node to the list.
         ordering.push_front(node);
-
-      
     }
     void dfstopologicalsort()
     {
 
-        map<T,bool>visited;
+        map<T, bool> visited;
         list<T> ordering;
 
-        for(auto  i:adjList){
+        for (auto i : adjList)
+        {
 
             // i is pair (node,list)
-            T node=i.first;
-            if(!visited[node]){
-                dfshelper(node,visited,ordering);
+            T node = i.first;
+            if (!visited[node])
+            {
+                dfshelper(node, visited, ordering);
             }
         }
 
-    //print all the element in ordering
-    for(T element:ordering){
-        cout<<element<<"-->";
-    }
-
-
+        //print all the element in ordering
+        for (T element : ordering)
+        {
+            cout << element << "-->";
+        }
     }
 };
 
@@ -96,7 +97,7 @@ int main(int argc, char const *argv[])
 
     Graph<string> g;
 
-    g.addEdge("english","programming logic",false);
+    g.addEdge("english", "programming logic", false);
     g.addEdge("maths", "programming logic", false);
     g.addEdge("programming logic", "html", false);
     g.addEdge("programming logic", "python", false);

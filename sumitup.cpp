@@ -1,81 +1,68 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
-#include<set>
-#include<iterator>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <set>
+#include <iterator>
 using namespace std;
 
+void subset(int *arr, int n, int i, int sum, int target, vector<int> &ans, set<vector<int>> &st)
+{
 
+    if (i == n)
+    {
 
-void subset(int *arr,int n,int i,int sum,int target,vector<int>&ans,set<vector<int> >&st){
-
-
-        if(i==n){
-
-            if(sum==target){
+        if (sum == target)
+        {
 
             st.insert(ans);
-
-
-
-            }
-            return ;
         }
+        return;
+    }
 
-        int temp=sum;
-   		 sum+=arr[i];
-   		 ans.push_back(arr[i]);
-            subset(arr,n,i+1,sum,target,ans,st);
+    int temp = sum;
+    sum += arr[i];
+    ans.push_back(arr[i]);
+    subset(arr, n, i + 1, sum, target, ans, st);
 
-
-        sum=temp;
-       ans.pop_back();
-     subset(arr,n,i+1,sum,target,ans,st);
+    sum = temp;
+    ans.pop_back();
+    subset(arr, n, i + 1, sum, target, ans, st);
 }
 
+int main()
+{
 
+    int n;
+    cin >> n;
+    int arr[n];
 
+    for (int i = 0; i < n; i++)
+    {
 
-
-
-
-
-
-
-int main(){
-
-
-        int n;
-        cin>>n;
-        int arr[n];
-
-    for(int i=0;i<n;i++){
-
-        cin>>arr[i];
+        cin >> arr[i];
     }
-    sort(arr,arr+n);
-int target;
-cin>>target;
-vector<int> v;
-set<vector<int> > st;
+    sort(arr, arr + n);
+    int target;
+    cin >> target;
+    vector<int> v;
+    set<vector<int>> st;
 
-//set<vector<int> > :: iterator sitr;
-//vector<int> :: iterator vitr;
+    //set<vector<int> > :: iterator sitr;
+    //vector<int> :: iterator vitr;
 
-   subset(arr,n,0,0,target,v,st);
+    subset(arr, n, 0, 0, target, v, st);
 
-   for(auto sitr=st.begin() ; sitr!=st.end();++sitr){
+    for (auto sitr = st.begin(); sitr != st.end(); ++sitr)
+    {
 
-        for(auto vitr = (*sitr).begin();vitr!=(*sitr).end();vitr++){
-            cout<<*vitr<<" ";
+        for (auto vitr = (*sitr).begin(); vitr != (*sitr).end(); vitr++)
+        {
+            cout << *vitr << " ";
         }
-        cout<<endl;
-   }
+        cout << endl;
+    }
 
-
-
-
-return 0;
+    return 0;
 }
 
 ///solution..
@@ -160,8 +147,3 @@ vector<vector<int> > combinationSum(vector<int> &A, int B) {
     return ans;
 }
 */
-
-
-
-
-

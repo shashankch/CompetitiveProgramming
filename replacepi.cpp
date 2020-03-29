@@ -1,28 +1,26 @@
 
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 using namespace std;
 
+string replacepi(string str, int i)
+{
 
-string replacepi(string str,int i){
-
-
-    if(i==str.length()){
+    if (i == str.length())
+    {
         return str;
     }
-    string res=replacepi(str,i+1);
+    string res = replacepi(str, i + 1);
 
-    if(str[i]=='p' && str[i+1]=='i'){
-       return (res.substr(0,i)+"3.14"+res.substr(i+2));
+    if (str[i] == 'p' && str[i + 1] == 'i')
+    {
+        return (res.substr(0, i) + "3.14" + res.substr(i + 2));
     }
 
-    else{
+    else
+    {
         return res;
     }
-
-
-
-
 
     /*
     void replacePi(char *in,int i,char *out,int j){
@@ -48,25 +46,21 @@ string replacepi(string str,int i){
     }
 }
 */
-
 }
-int main(){
+int main()
+{
 
     int t;
-    cin>>t;
+    cin >> t;
 
-    while(t--){
+    while (t--)
+    {
 
         string str;
-        cin>>str;
-       cout<<replacepi(str,0);
-        cout<<endl;
-
+        cin >> str;
+        cout << replacepi(str, 0);
+        cout << endl;
     }
 
-
-
-
-
-
-return 0;}
+    return 0;
+}

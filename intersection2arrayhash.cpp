@@ -1,68 +1,64 @@
-#include<iostream>
-#include<unordered_map>
-#include<vector>
-#include<algorithm>
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
+int main()
+{
 
-int main(){
+    int n;
+    cin >> n;
+    int *a = new int[n];
+    int *b = new int[n];
+    for (int i = 0; i < n; i++)
+    {
 
-int n;
-cin>>n;
-int *a=new int[n];
-int *b=new int[n];
-for(int i=0;i<n;i++){
-
-    cin>>a[i];
-}
-for(int i=0;i<n;i++){
-
-    cin>>b[i];
-}
-unordered_map<int,int>mp;
-for(int i=0;i<n;i++){
-    if(mp.find(a[i])!=mp.end()){
-
-        mp[a[i]]+=1;
-
+        cin >> a[i];
     }
-    else{
-    mp.insert(make_pair(a[i],1));
+    for (int i = 0; i < n; i++)
+    {
+
+        cin >> b[i];
     }
-}
-vector<int>v;
-for(int i=0;i<n;i++){
+    unordered_map<int, int> mp;
+    for (int i = 0; i < n; i++)
+    {
+        if (mp.find(a[i]) != mp.end())
+        {
 
-    if(mp.find(b[i])!=mp.end()){
-        v.push_back(b[i]);
-        mp[b[i]]-=1;
-
-
+            mp[a[i]] += 1;
+        }
+        else
+        {
+            mp.insert(make_pair(a[i], 1));
+        }
     }
-    if(mp[b[i]]<=0){
-        mp.erase(b[i]);
+    vector<int> v;
+    for (int i = 0; i < n; i++)
+    {
+
+        if (mp.find(b[i]) != mp.end())
+        {
+            v.push_back(b[i]);
+            mp[b[i]] -= 1;
+        }
+        if (mp[b[i]] <= 0)
+        {
+            mp.erase(b[i]);
+        }
     }
+    sort(v.begin(), v.end());
+    cout << "[";
+    int i;
+    for (i = 0; i < v.size() - 1; i++)
+    {
+        cout << v[i] << ", ";
+    }
+    cout << v[i] << "]";
 
-
+    return 0;
 }
-sort(v.begin(),v.end());
-cout<<"[";
-int i;
-for( i=0;i<v.size()-1;i++){
-    cout<<v[i]<<", ";
-}
-cout<<v[i]<<"]";
-
-
-
-return 0;
-}
-
-
-
-
-
-
 
 /*
 int main(){

@@ -27,7 +27,8 @@ public:
         }
     }
 
-    void print(){
+    void print()
+    {
 
         //iterate over the map
         for (auto i : adjList)
@@ -45,55 +46,56 @@ public:
     }
 
     //check for undirected graph
-    bool isCyclicbfs(T src){
+    bool isCyclicbfs(T src)
+    {
 
-        map<T,bool> visited;
-        map<T,int> parent;
-        queue<T>q;
+        map<T, bool> visited;
+        map<T, int> parent;
+        queue<T> q;
         q.push(src);
-        visited[src]=true;
-        parent[src]=src;
+        visited[src] = true;
+        parent[src] = src;
 
-        while(!q.empty()){
-            T node =q.front();
+        while (!q.empty())
+        {
+            T node = q.front();
             q.pop();
 
             // iterate over the neighbours of that node leaving parent.
-            for( T neighbour : adjList[node]){
-                if(visited[neighbour]==true && parent[node]!=neighbour){  //modification in bfs..
+            for (T neighbour : adjList[node])
+            {
+                if (visited[neighbour] == true && parent[node] != neighbour)
+                { //modification in bfs..
                     return true;
                 }
-                else if(!visited[neighbour]){
-                    visited[neighbour]=true;
-                    parent[neighbour]=node;
+                else if (!visited[neighbour])
+                {
+                    visited[neighbour] = true;
+                    parent[neighbour] = node;
                     q.push(neighbour);
                 }
             }
         }
         return false;
-
-
     }
-
-
-
-    
 };
 
 int main(int argc, char const *argv[])
 {
 
     Graph<int> g;
-    g.addEdge(1,2);
-    g.addEdge(1,4);
-    g.addEdge(4,3);
-    g.addEdge(2,3);
+    g.addEdge(1, 2);
+    g.addEdge(1, 4);
+    g.addEdge(4, 3);
+    g.addEdge(2, 3);
 
-    if(g.isCyclicbfs(1)){
-        cout<<"Cyclic graph";
+    if (g.isCyclicbfs(1))
+    {
+        cout << "Cyclic graph";
     }
-    else{
-        cout<<"Non cyclic";
+    else
+    {
+        cout << "Non cyclic";
     }
 
     return 0;

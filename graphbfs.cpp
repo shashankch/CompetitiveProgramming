@@ -72,9 +72,8 @@ public:
 
 int main(int argc, char const *argv[])
 {
-   
-    Graph<int> g2;
 
+    Graph<int> g2;
 
     g2.addEdge(0, 1);
     g2.addEdge(1, 2);

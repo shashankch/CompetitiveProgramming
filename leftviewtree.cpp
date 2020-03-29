@@ -1,92 +1,91 @@
 
 
-#include<iostream>
-#include<queue>
+#include <iostream>
+#include <queue>
 
 using namespace std;
 
-class node{
+class node
+{
 
-    public:
+public:
     int data;
 
     node *left;
     node *right;
 
+    node(int d)
+    {
 
-    node(int d){
-
-        data=d;
-        left=NULL;
-        right=NULL;
-}
+        data = d;
+        left = NULL;
+        right = NULL;
+    }
 };
 
-node *buildtree(){
+node *buildtree()
+{
 
-    queue<node *>q;
+    queue<node *> q;
     int d;
-    cin>>d;
-   node *root=new node(d);
-   q.push(root);
-   while(!q.empty()){
+    cin >> d;
+    node *root = new node(d);
+    q.push(root);
+    while (!q.empty())
+    {
 
-        node *temp=q.front();
+        node *temp = q.front();
         q.pop();
-        int l,r;
-        cin>>l>>r;
+        int l, r;
+        cin >> l >> r;
 
-        if(l!=-1){
+        if (l != -1)
+        {
 
-            temp->left=new node(l);
+            temp->left = new node(l);
             q.push(temp->left);
         }
-        if(r!=-1){
+        if (r != -1)
+        {
 
-            temp->right=new node(r);
+            temp->right = new node(r);
             q.push(temp->right);
-
         }
     }
 
-   return root;
-
+    return root;
 }
 
+void leftviewhelp(node *root, int level, int &ml)
+{
 
-
-void leftviewhelp(node *root,int level,int &ml){
-
-    if(root==NULL){
+    if (root == NULL)
+    {
         return;
     }
 
-    if(level>ml){
+    if (level > ml)
+    {
 
-        cout<<root->data<<" ";
-        ml=level;
+        cout << root->data << " ";
+        ml = level;
     }
-    leftviewhelp(root->left,level+1,ml);
-    leftviewhelp(root->right,level+1,ml);
+    leftviewhelp(root->left, level + 1, ml);
+    leftviewhelp(root->right, level + 1, ml);
 }
 
+void leftview(node *root)
+{
 
-void leftview(node *root){
-
-   int mxl=0;
-    leftviewhelp(root,1,mxl);
-
-
+    int mxl = 0;
+    leftviewhelp(root, 1, mxl);
 }
 
-int main(){
+int main()
+{
 
+    node *root = buildtree();
+    leftview(root);
 
-node *root=buildtree();
-leftview(root);
-
-
-return 0;
-
+    return 0;
 }
-

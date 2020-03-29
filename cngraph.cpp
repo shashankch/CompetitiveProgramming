@@ -2,49 +2,48 @@
 
 using namespace std;
 
-
-void printBFS(int ** edges,int n,int sv){
+void printBFS(int **edges, int n, int sv)
+{
 
     queue<int> pendingVertices;
-    bool *visited=new bool[n];
+    bool *visited = new bool[n];
 
-    for(int i=0;i<n;i++){
+    for (int i = 0; i < n; i++)
+    {
 
-        visited[i]=false;
+        visited[i] = false;
     }
     pendingVertices.push(sv);
-    visited[sv]=true;
-    while(!pendingVertices.empty()){
-        int currentVertex=pendingVertices.front();
+    visited[sv] = true;
+    while (!pendingVertices.empty())
+    {
+        int currentVertex = pendingVertices.front();
         pendingVertices.pop();
-        cout<<currentVertex<<endl;
-        for(int i=0;i<n;i++){
+        cout << currentVertex << endl;
+        for (int i = 0; i < n; i++)
+        {
 
-            if(i==currentVertex){continue;}
-            if(edges[currentVertex][i]==1 && !visited[i]){
+            if (i == currentVertex)
+            {
+                continue;
+            }
+            if (edges[currentVertex][i] == 1 && !visited[i])
+            {
                 pendingVertices.push(i);
-                visited[i]=true;
+                visited[i] = true;
             }
         }
     }
 
-delete []visited;
+    delete[] visited;
 }
 
-
-
-
-
-
-
-
-
 // dfs implementation.. going in depth first.
-void print(int **edges, int n, int sv,bool *visited)
+void print(int **edges, int n, int sv, bool *visited)
 {
 
     cout << sv << endl;
-    visited[sv]=true;
+    visited[sv] = true;
     for (int i = 0; i < n; i++)
     {
         if (i == sv)
@@ -54,22 +53,14 @@ void print(int **edges, int n, int sv,bool *visited)
 
         if (edges[sv][i] == 1)
         {
-            if(visited[i]){
+            if (visited[i])
+            {
                 continue;
             }
-            print(edges, n, i,visited);
+            print(edges, n, i, visited);
         }
     }
 }
-
-
-
-
-
-
-
-
-
 
 int main()
 {
@@ -99,19 +90,19 @@ int main()
         edges[s][f] = 1;
     }
 
-    bool *visited=new bool[n];
-    for(int i=0;i<n;i++){
-        visited[i]=false;
+    bool *visited = new bool[n];
+    for (int i = 0; i < n; i++)
+    {
+        visited[i] = false;
     }
-    print(edges, n, 0,visited);
+    print(edges, n, 0, visited);
 
-    printBFS(edges,n,0);
+    printBFS(edges, n, 0);
 
+    for (int i = 0; i < n; i++)
+    {
 
-    for(int i=0;i<n;i++){
-
-        delete [] edges[i]; 
-
+        delete[] edges[i];
     }
 
     delete[] edges;

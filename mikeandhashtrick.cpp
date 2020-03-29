@@ -1,26 +1,27 @@
 
-#include<iostream>
-#include<map>
-#include<vector>
+#include <iostream>
+#include <map>
+#include <vector>
 using namespace std;
 
-int* hash_array(int A[], int n,int MAX)
+int *hash_array(int A[], int n, int MAX)
 {
 
-    int* hash = new int[MAX+1]; //MAX is the maximum possible value of A[i]
-    for(int i=0;i<=MAX;i++) hash[i]=-1; //initialize hash to -1.
+    int *hash = new int[MAX + 1]; //MAX is the maximum possible value of A[i]
+    for (int i = 0; i <= MAX; i++)
+        hash[i] = -1; //initialize hash to -1.
     int count = 0;
-    for(int i=0;i<n;i++) // Loop through elements of array
+    for (int i = 0; i < n; i++) // Loop through elements of array
     {
-        if(hash[A[i]] == -1) // A[i] was not assigned any hash before
+        if (hash[A[i]] == -1) // A[i] was not assigned any hash before
         {
             hash[A[i]] = count; // Assigning hash to A[i]
             count++;
             continue;
         }
-        for(int j = 0;j<i;j++)
+        for (int j = 0; j < i; j++)
         {
-            if(hash[A[j]] > hash[A[i]]) // All the hashes greater than previous hash of A[i] are decremented.
+            if (hash[A[j]] > hash[A[i]]) // All the hashes greater than previous hash of A[i] are decremented.
                 hash[A[j]]--;
         }
         hash[A[i]] = count - 1; // Assigning a new hash to A[i]
@@ -28,42 +29,42 @@ int* hash_array(int A[], int n,int MAX)
     return hash;
 }
 
+int main()
+{
 
+    int n;
+    cin >> n;
+    map<int, vector<int>> m;
+    int arr[n];
+    int MAX = 0;
+    for (int i = 0; i < n; i++)
+    {
 
-int main(){
-
-
-int n;
-cin>>n;
-map<int,vector<int> > m;
-int arr[n];
-  int MAX=0;
-for(int i=0;i<n;i++){
-
-   cin>>arr[i];
-    if(arr[i]>MAX){
-            MAX=arr[i];
+        cin >> arr[i];
+        if (arr[i] > MAX)
+        {
+            MAX = arr[i];
+        }
     }
 
-}
-
-
-int *has=hash_array(arr,n,MAX);
-for(int i=0;i<=MAX;i++){
-    if(has[i]!=-1){
-        m[has[i]].push_back(i);
+    int *has = hash_array(arr, n, MAX);
+    for (int i = 0; i <= MAX; i++)
+    {
+        if (has[i] != -1)
+        {
+            m[has[i]].push_back(i);
+        }
     }
-}
-for(auto v:m){
+    for (auto v : m)
+    {
 
-    for(int i=0;i<v.second.size();i++){
-        cout<<v.second[i]<<endl;
+        for (int i = 0; i < v.second.size(); i++)
+        {
+            cout << v.second[i] << endl;
+        }
     }
 
-}
-
-
-return 0;
+    return 0;
 }
 /*
 #include <bits/stdc++.h>
@@ -106,7 +107,6 @@ int main()
 
 
 */
-
 
 /*
 #include<iostream>

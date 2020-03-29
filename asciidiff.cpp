@@ -1,27 +1,24 @@
 
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 using namespace std;
 
+int main()
+{
 
-int main(){
+    string ch;
 
-string ch;
+    cin >> ch;
+    int len = ch.length();
+    int i;
 
-cin>>ch;
-int len=ch.length();
-int i;
+    cout << ch[0];
+    for (i = 1; i < len; i++)
+    {
 
-cout<<ch[0];
-for(i=1;i<len;i++){
-
-int digit=ch[i]-ch[i-1];
-cout<<digit;
-cout<<ch[i];
-
-
-
-
-}
-return 0;
+        int digit = ch[i] - ch[i - 1];
+        cout << digit;
+        cout << ch[i];
+    }
+    return 0;
 }

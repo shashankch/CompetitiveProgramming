@@ -1,123 +1,117 @@
-#include<iostream>
+#include <iostream>
 #define ll long long int
 using namespace std;
 
-class node{
-
+class node
+{
 
 public:
     ll data;
-    node * next;
+    node *next;
 
-    node(ll d){
+    node(ll d)
+    {
 
-    data=d;
-    next=NULL;
+        data = d;
+        next = NULL;
     }
-
 };
 
-void insertattail(node*&head,ll data){
+void insertattail(node *&head, ll data)
+{
 
-
-        if(head==NULL){
+    if (head == NULL)
+    {
         head = new node(data);
         return;
     }
-      node *tail=head;
-      while(tail->next!=NULL){
+    node *tail = head;
+    while (tail->next != NULL)
+    {
 
-            tail=tail->next;
-
-
-      }
-      tail->next=new node(data);
-      return;
-
-
-
+        tail = tail->next;
+    }
+    tail->next = new node(data);
+    return;
 }
 
-node * mergesortedlist(node *a,node *b){
+node *mergesortedlist(node *a, node *b)
+{
 
-    if(a==NULL){
+    if (a == NULL)
+    {
         return b;
     }
-    else if(b==NULL){
+    else if (b == NULL)
+    {
         return a;
     }
 
     node *c;
     /// compare a and b for smaller element to point temp as head of new list..
 
-    if(a->data<b->data){
-        c=a;
+    if (a->data < b->data)
+    {
+        c = a;
         /// pointing the pointer of smallest values to the rest of sorted list.We assume returned by recursion.
-        c->next=mergesortedlist(a->next,b);
-
+        c->next = mergesortedlist(a->next, b);
     }
-    else{
-        c=b;
-                /// pointing the pointer of smallest values to the rest of sorted list.We assume returned by recursion.
+    else
+    {
+        c = b;
+        /// pointing the pointer of smallest values to the rest of sorted list.We assume returned by recursion.
 
-        c->next=mergesortedlist(a,b->next);
-
+        c->next = mergesortedlist(a, b->next);
     }
     /// return original value from the call stack......
-return c;
+    return c;
 }
 
+void print(node *head)
+{
 
-void print(node *head){
+    while (head != NULL)
+    {
 
-
-    while(head!=NULL){
-
-        cout<<head->data<<" ";
-        head=head->next;
-
-
+        cout << head->data << " ";
+        head = head->next;
     }
-//cout<<"length:"<<length(head)<<endl;
+    //cout<<"length:"<<length(head)<<endl;
 
-cout<<endl;
-
-
-
+    cout << endl;
 }
 
+int main()
+{
 
+    node *head = NULL;
+    ll t;
+    cin >> t;
 
-int main(){
+    while (t--)
+    {
 
+        node *head1 = NULL;
+        node *head2 = NULL;
+        int n, data;
+        cin >> n;
+        for (int i = 0; i < n; i++)
+        {
 
-node * head=NULL;
-ll t;
-cin>>t;
+            cin >> data;
+            insertattail(head1, data);
+        }
+        cin >> n;
+        for (int i = 0; i < n; i++)
+        {
 
-while(t--){
+            cin >> data;
+            insertattail(head2, data);
+        }
 
-node *head1=NULL;
-node *head2=NULL;
-int n,data;
-cin>>n;
-for(int i=0;i<n;i++){
+        node *temp = mergesortedlist(head1, head2);
+        print(temp);
+    }
 
-    cin>>data;
-    insertattail(head1,data);
-}
-cin>>n;
-for(int i=0;i<n;i++){
-
-    cin>>data;
-    insertattail(head2,data);
-}
-
-
-node *temp=mergesortedlist(head1,head2);
-print(temp);
-}
-
-
-return 0;
+    return 0;
 }
