@@ -1,18 +1,13 @@
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
-void printBFS(int **edges, int n, int sv)
+void printbfs(int **edges, int n, int sv, bool *visited)
 {
 
     queue<int> pendingVertices;
-    bool *visited = new bool[n];
 
-    for (int i = 0; i < n; i++)
-    {
-
-        visited[i] = false;
-    }
     pendingVertices.push(sv);
     visited[sv] = true;
     while (!pendingVertices.empty())
@@ -34,12 +29,10 @@ void printBFS(int **edges, int n, int sv)
             }
         }
     }
-
-    delete[] visited;
 }
 
 // dfs implementation.. going in depth first.
-void print(int **edges, int n, int sv, bool *visited)
+void printdfs(int **edges, int n, int sv, bool *visited)
 {
 
     cout << sv << endl;
@@ -57,60 +50,67 @@ void print(int **edges, int n, int sv, bool *visited)
             {
                 continue;
             }
-            print(edges, n, i, visited);
+            printdfs(edges, n, i, visited);
         }
     }
 }
 
-vector<int> *getpath(int **edges, int n, int sv, int ev)
+void bfs(int **edges, int n)
 {
-    queue<int> bfsq;
     bool *visited = new bool[n];
+
     for (int i = 0; i < n; i++)
     {
         visited[i] = false;
     }
-    bfsq.push(sv);
-    bool done = false;
-    map<int, int> parent;
-    visited[sv] = true;
-    while (!bfsq.empty() && !done)
+
+    for (int i = 0; i < n; i++)
     {
-        int front = bfsq.front();
-        bfsq.pop();
-        for (int i = 0; i < n; i++)
-        {
-            if (edges[front][i] && !visited[i])
-            {
-                parent[i] = front;
-                bfsq.push(i);
-                visited[i] = true;
-                if (i == ev)
-                {
-                    done = true;
-                    break;
-                }
-            }
-        }
+        if (!visited[i])
+            printbfs(edges, n, i, visited);
     }
-    if (!done)
+    delete[] visited;
+}
+
+void dfs(int **edges, int n)
+{
+
+    bool *visited = new bool[n];
+
+    for (int i = 0; i < n; i++)
     {
-        return NULL;
-    }
-    else
-    {
-        vector<int> *out = new vector<int>();
-        int curr = ev;
-        out->push_back(ev);
-        while (curr != sv)
-        {
-            curr = parent[curr];
-            out->push_back(curr);
-        }
-        return out;
+        visited[i] = false;
     }
 
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i])
+            printdfs(edges, n, i, visited);
+    }
     delete[] visited;
+}
+
+bool isconnected(int **edges, int n)
+{
+    bool *visited = new bool[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        visited[i] = false;
+    }
+    // here 0 is considered as start vertex..
+    printdfs(edges, n, 0, visited);
+    // or call bfs
+    // printbfs(edges,n,0,visited);
+    for (int i = 0; i < n; i++)
+    {
+
+        if (!visited[i])
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 int main()
@@ -141,29 +141,19 @@ int main()
         edges[s][f] = 1;
     }
 
-    bool *visited = new bool[n];
-    for (int i = 0; i < n; i++)
+    cout << "dfs" << endl;
+    dfs(edges, n);
+    cout << "bfs" << endl;
+    bfs(edges, n);
+
+    if (isconnected(edges, n))
     {
-        visited[i] = false;
-    }
-    print(edges, n, 0, visited);
 
-    printBFS(edges, n, 0);
-
-    int sv, ev;
-    cin >> sv >> ev;
-
-    vector<int> *ans = getpath(edges, n, sv, ev);
-    if (ans != NULL)
-    {
-        for (int i = 0; i < ans->size(); i++)
-        {
-            cout << ans->at(i) << endl;
-        }
+        cout << "true" << endl;
     }
     else
     {
-        cout << "no path" << endl;
+        cout << "false" << endl;
     }
 
     for (int i = 0; i < n; i++)
@@ -173,5 +163,4 @@ int main()
     }
 
     delete[] edges;
-    delete[] visited;
 }

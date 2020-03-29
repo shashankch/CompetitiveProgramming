@@ -114,7 +114,9 @@ int main()
 
     int sv, ev;
     cin >> sv >> ev;
-
+    // to get start vertex (int sv=adjlist.begin()->first;)
+    // visited.count(adjlist->at(i)==0) can be used to check not visited.
+    // to check all visited : visited.size()==adjlist.size() can also be used.
     if (haspath(adjlist, sv, ev))
     {
 
