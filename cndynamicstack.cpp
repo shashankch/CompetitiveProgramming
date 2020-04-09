@@ -1,10 +1,10 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
+template <typename T>
 class stackusingarray
 {
-    int *data;
+    T *data;
     int nextIndex;
     int capacity;
 
@@ -12,7 +12,7 @@ public:
     stackusingarray()
     {
         capacity = 4;
-        data = new int[capacity];
+        data = new T[capacity];
         nextIndex = 0;
     }
 
@@ -26,19 +26,27 @@ public:
         return nextIndex == 0;
     }
 
-    void push(int element)
+    void push(T element)
     {
 
         if (nextIndex == capacity)
         {
-            cout << "stack overflow" << endl;
-            return;
+            T *newarr = new T[2 * capacity];
+            for (int i = 0; i < capacity; i++)
+            {
+                newarr[i] = data[i];
+            }
+
+            delete[] data;
+            data = newarr;
+            capacity *= 2;
         }
+
         data[nextIndex] = element;
         nextIndex++;
     }
 
-    int pop()
+    T pop()
     {
 
         if (!isEmpty())
@@ -49,11 +57,11 @@ public:
         else
         {
             cout << "empty" << endl;
-            return INT_MIN;
+            return 0;
         }
     }
 
-    int top()
+    T top()
     {
 
         if (!isEmpty())
@@ -66,17 +74,9 @@ public:
 int main()
 {
 
-    stackusingarray *s = new stackusingarray(30);
-    stackusingarray stack(10);
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
-    stack.push(4);
-    stack.push(5);
-    bool ans = stack.isEmpty();
-    int top = stack.pop();
-    int size = stack.size();
-    int val = stack.top();
+    stackusingarray<int> *s = new stackusingarray<int>();
+    stackusingarray<int> stk;
+    stk.push(10);
 
     return 0;
 }

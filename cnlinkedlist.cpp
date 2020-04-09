@@ -433,6 +433,56 @@ Node *bubble_sort(Node *head)
     return head;
 }
 
+Node *appendnthpart(Node *head, int n)
+{
+
+    Node *temp = head;
+    Node *curr = head;
+
+    int pos = -n;
+    while (temp->next != NULL)
+    {
+
+        if (pos >= 0)
+        {
+            curr = curr->next;
+        }
+        pos++;
+        temp = temp->next;
+    }
+
+    temp->next = head;
+    head = curr->next;
+    curr->next = NULL;
+
+    return head;
+}
+
+Node *appendnthpart2(Node *head, int n)
+{
+
+    Node *fast = head;
+    Node *slow = head;
+    for (int i = 0; i < n; i++)
+    {
+
+        fast = fast->next;
+    }
+
+    while (fast->next != NULL)
+    {
+
+        slow = slow->next;
+        fast = fast->next;
+    }
+    Node *newhead = slow->next;
+    slow->next = NULL;
+    fast->next = head;
+    head = newhead;
+
+    return head;
+}
+
 int main()
 {
 
@@ -455,8 +505,9 @@ int main()
     print(head);
     //  insertNode(head, 2, 99);
     //head = reverse(head);
-    head = evenafterodd(head);
-    cout << endl;
+   // head = evenafterodd(head);
+   cout << endl;
+  head = appendnthpart2(head,2);
     print(head);
 
     return 0;
