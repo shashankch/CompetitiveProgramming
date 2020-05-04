@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 //single traversal O(N)
@@ -87,6 +87,33 @@ TreeNode *lca(TreeNode *root, TreeNode *p, TreeNode *q)
     {
         return result->node;
     }
+}
+
+bool findpathfrmrootnode(TreeNode *root, int node, vector<int> &path)
+{
+
+    if (root == NULL)
+    {
+        return false;
+    }
+
+    path.push_back(root->val);
+
+    if(root->val==node){
+        return true;
+    }
+
+    if(root->left!=NULL && findpathfrmrootnode(root->left,node,path))
+    {
+        return true;
+    }
+    if(root->right!=NULL && findpathfrmrootnode(root->right,node,path)){
+        return true;
+    }
+
+    path.pop_back();
+    return false;
+
 }
 
 int main()
