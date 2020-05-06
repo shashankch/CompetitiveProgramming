@@ -75,6 +75,8 @@ int calevel(Node *root, int val, int level)
     {
         return left;
     }
+
+    return calevel(root->right, val, level + 1);
 }
 
 int caldist(Node *root, int a, int b)
@@ -139,8 +141,8 @@ int caldist2(Node *root, int a, int b)
 
     Node *lca = callca(root, a, b);
 
-    int adist = calevel(root, a, 0);
-    int bdist = calevel(root, b, 0);
+    int adist = calevel(lca, a, 0);
+    int bdist = calevel(lca, b, 0);
 
     return adist + bdist;
 }
